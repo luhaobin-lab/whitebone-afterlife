@@ -1,0 +1,3097 @@
+{
+  "families": [
+    {
+      "id": "SK",
+      "name": "欠薪骨团",
+      "symbol": "骷髅头",
+      "humor": "死后仍在排班，唯一福利是不用吃饭。",
+      "role": "护盾承伤、骨刺反击、远程破甲",
+      "branch_a": "盾阵与承伤",
+      "branch_b": "骨弩与破甲"
+    },
+    {
+      "id": "ZM",
+      "name": "腐败工会",
+      "symbol": "烂心脏",
+      "humor": "组织已经烂透，成员因此免交体检费。",
+      "role": "毒素、有效治疗、尸骸回收",
+      "branch_a": "毒传播与范围压制",
+      "branch_b": "修复与毒素转化"
+    },
+    {
+      "id": "HR",
+      "name": "丧马快递",
+      "symbol": "丧尸马头",
+      "humor": "承诺使命必达，不承诺骑手完整。",
+      "role": "冲锋、位移、绕侧与回场支援",
+      "branch_a": "冲锋突击",
+      "branch_b": "移动补给与牵制"
+    },
+    {
+      "id": "HD",
+      "name": "断手外包",
+      "symbol": "断手",
+      "humor": "只有一只手，也要同时接三份活。",
+      "role": "高频普攻、临时召唤、尸骸利用",
+      "branch_a": "手群与追击",
+      "branch_b": "元素传导与处决"
+    },
+    {
+      "id": "BL",
+      "name": "骨铃礼仪",
+      "symbol": "骨铃",
+      "humor": "丧钟按次收费，客户没有差评权限。",
+      "role": "治疗、护盾、冷电与队伍节奏",
+      "branch_a": "修复与防守",
+      "branch_b": "诅咒与元素控制"
+    },
+    {
+      "id": "CF",
+      "name": "棺材公寓",
+      "symbol": "棺材板",
+      "humor": "永久产权，入住以后谢绝退租。",
+      "role": "阵地承伤、尸骸储备、召唤与范围法术",
+      "branch_a": "棺阵与亡灵补充",
+      "branch_b": "燃烧与尸骸法术"
+    }
+  ],
+  "units": [
+    {
+      "id": "U_SK_1",
+      "family": "SK",
+      "rank": 1,
+      "branch": "BASE",
+      "name": "骨牌盾手",
+      "role": "入门前排",
+      "undead_form": "持骨盾的完整骷髅",
+      "hp": 150,
+      "atk": 14,
+      "armor": 8,
+      "aps": 0.85,
+      "move": 2.1,
+      "range": 1.2,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.12,
+      "block_reduction": 0.45,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_SK_1_P",
+        "name": "最低保障",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "自身",
+        "effect": "获得相当于自身12%最大生命的BONE_ARMOR，持续5秒；本技能护盾最多保留1份，重复刷新。",
+        "coefficient": 0,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_SK_1_V",
+        "name": "散架意见",
+        "trigger": "SHIELD_BREAK：自身护盾被敌方伤害耗尽",
+        "target": "最近1名敌人，距离不超过2米",
+        "effect": "造成60%攻击力的物理技能伤害。",
+        "coefficient": 0.6,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "有效治疗",
+        "护盾补充"
+      ],
+      "provides": [
+        "SHIELD_GAIN",
+        "SHIELD_BREAK",
+        "近战承伤"
+      ],
+      "weakness": "法术集火绕过护甲，护盾过期不触发骨刺。",
+      "visual": "一面写着最低保障的裂骨盾",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_SK_2A",
+      "family": "SK",
+      "rank": 2,
+      "branch": "A",
+      "name": "拒赔骨卫",
+      "role": "精英嘲讽前排",
+      "undead_form": "双层肋骨盾构成的重甲骷髅",
+      "hp": 205,
+      "atk": 15,
+      "armor": 12,
+      "aps": 0.85,
+      "move": 2.1,
+      "range": 1.2,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.12,
+      "block_reduction": 0.45,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_SK_2A_P",
+        "name": "请找下一窗口",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "自身与3米内最近2名敌人",
+        "effect": "自身获得18%最大生命BONE_ARMOR持续5秒，并使2名敌人TAUNTED指向自身2秒。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_SK_2A_V",
+        "name": "受理回执",
+        "trigger": "TAUNT：自身成功施加嘲讽",
+        "target": "自身",
+        "effect": "恢复4%最大生命；仅实际恢复量产生EFFECTIVE_HEAL。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "高频治疗",
+        "护盾"
+      ],
+      "provides": [
+        "TAUNT",
+        "SHIELD_GAIN",
+        "EFFECTIVE_HEAL"
+      ],
+      "weakness": "远程法术会在护盾空档集中伤害。",
+      "visual": "双层盾牌夹着一叠拒赔单",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_SK_2B",
+      "family": "SK",
+      "rank": 2,
+      "branch": "B",
+      "name": "骨税弩吏",
+      "role": "精英远程破甲",
+      "undead_form": "用自己肋骨装填弩箭的骷髅",
+      "hp": 130,
+      "atk": 18,
+      "armor": 5,
+      "aps": 1.05,
+      "move": 2.1,
+      "range": 6,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.12,
+      "block_reduction": 0.45,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_SK_2B_P",
+        "name": "逐骨征税",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "本次普攻目标",
+        "effect": "额外造成90%攻击力物理技能伤害，并施加EXPOSED 1层持续5秒；本技能对同目标最多3层。",
+        "coefficient": 0.9,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_SK_2B_V",
+        "name": "多退少补",
+        "trigger": "DIRECT_CRIT：自身普攻暴击",
+        "target": "3米内生命比例最低的正式友军",
+        "effect": "给予相当于自身70%攻击力的BONE_ARMOR持续4秒；本被动同目标最多1份护盾。",
+        "coefficient": 0.7,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "暴击率",
+        "前排保护"
+      ],
+      "provides": [
+        "EXPOSED",
+        "SHIELD_GAIN",
+        "远程物理输出"
+      ],
+      "weakness": "缺少前排时极易被冲锋单位贴身。",
+      "visual": "算盘挂在肋骨上，骨弩吐出票据",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_SK_3A",
+      "family": "SK",
+      "rank": 3,
+      "branch": "A",
+      "name": "骨阵审计长",
+      "role": "统领盾阵支援",
+      "undead_form": "背负一圈旋转骨盾的高大骷髅",
+      "hp": 245,
+      "atk": 18,
+      "armor": 14,
+      "aps": 0.85,
+      "move": 2.1,
+      "range": 1.5,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.12,
+      "block_reduction": 0.45,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_SK_3A_P",
+        "name": "审计全覆盖",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "4米内护盾值最低的3名正式友军",
+        "effect": "每人获得相当于自身90%攻击力BONE_ARMOR持续5秒；各目标本技能护盾最多1份。",
+        "coefficient": 0.9,
+        "cooldown": 4,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_SK_3A_V",
+        "name": "破盾追责",
+        "trigger": "SHIELD_BREAK：4米内任意正式友军护盾被耗尽",
+        "target": "护盾破裂友军2米内最近1名敌人",
+        "effect": "造成100%攻击力物理技能伤害。",
+        "coefficient": 1,
+        "cooldown": 1.5,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "集中布阵",
+        "前排持续交战"
+      ],
+      "provides": [
+        "群体SHIELD_GAIN",
+        "SHIELD_BREAK输出"
+      ],
+      "weakness": "队伍被击退打散后覆盖显著下降。",
+      "visual": "骨盾排成一圈账本",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_SK_3B",
+      "family": "SK",
+      "rank": 3,
+      "branch": "B",
+      "name": "穿肋执行官",
+      "role": "统领远程处决",
+      "undead_form": "胸腔化为长骨弩的骷髅",
+      "hp": 175,
+      "atk": 24,
+      "armor": 7,
+      "aps": 0.8,
+      "move": 2.1,
+      "range": 7,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.12,
+      "block_reduction": 0.45,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_SK_3B_P",
+        "name": "强制执行",
+        "trigger": "BASIC_HIT：自身每第4次命中",
+        "target": "本次普攻目标",
+        "effect": "造成170%攻击力物理技能伤害；若目标有EXPOSED，再造成40%攻击力真实技能伤害，每次最多追加1次。",
+        "coefficient": 1.7,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_SK_3B_V",
+        "name": "查封保全",
+        "trigger": "ENEMY_KO：自身造成原生敌人最终击杀",
+        "target": "自身及3米内生命比例最低1名正式友军",
+        "effect": "各获得100%攻击力BONE_ARMOR持续5秒；无击杀现金或经验。",
+        "coefficient": 1,
+        "cooldown": 3,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "EXPOSED来源",
+        "稳定射界"
+      ],
+      "provides": [
+        "单体爆发",
+        "SHIELD_GAIN"
+      ],
+      "weakness": "缺少破甲来源时难以快速处理重甲。",
+      "visual": "肋骨弩拖着一把封条",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_SK_4",
+      "family": "SK",
+      "rank": 4,
+      "branch": "LORD",
+      "name": "破产骨王",
+      "role": "领主盾阵核心",
+      "undead_form": "冠冕与王座均由断骨组成的骷髅领主",
+      "hp": 300,
+      "atk": 26,
+      "armor": 18,
+      "aps": 0.8,
+      "move": 2.1,
+      "range": 2,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.12,
+      "block_reduction": 0.45,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_SK_4_P",
+        "name": "全国最低保障",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "全场护盾值最低的4名正式友军",
+        "effect": "各获得相当于目标15%最大生命的BONE_ARMOR持续6秒；每目标本技能最多1份。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 4,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_SK_4_V",
+        "name": "有限责任王国",
+        "trigger": "SHIELD_BREAK：任意正式友军护盾被敌方耗尽",
+        "target": "破盾友军3米内最近2名敌人",
+        "effect": "每名敌人受到100%攻击力物理技能伤害。",
+        "coefficient": 1,
+        "cooldown": 2,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "多个正式前排",
+        "护盾周转"
+      ],
+      "provides": [
+        "全场SHIELD_GAIN",
+        "群体破盾伤害"
+      ],
+      "weakness": "召唤物不能吃主技，魔法持续压力会迅速耗光护盾。",
+      "visual": "空王冠在巨大骨盾上弹跳",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_ZM_1",
+      "family": "ZM",
+      "rank": 1,
+      "branch": "BASE",
+      "name": "试用腐尸",
+      "role": "入门毒前排",
+      "undead_form": "已死亡且缝合不齐的腐烂尸体",
+      "hp": 165,
+      "atk": 13,
+      "armor": 3,
+      "aps": 0.7,
+      "move": 1.7,
+      "range": 1.1,
+      "crit_rate": 0.05,
+      "regen": 0.005,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_ZM_1_P",
+        "name": "呼吸外包",
+        "trigger": "BASIC_HIT：自身每第2次命中",
+        "target": "本次普攻目标",
+        "effect": "施加POISON 1层持续6秒；本技能每目标最多3层，刷新自身最旧层。",
+        "coefficient": 0,
+        "cooldown": 1,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_ZM_1_V",
+        "name": "过期保养",
+        "trigger": "EFFECTIVE_HEAL：自身收到有效治疗",
+        "target": "自身",
+        "effect": "获得相当于本次实际治疗量30%的BONE_ARMOR持续3秒；本被动护盾上限为自身10%最大生命。",
+        "coefficient": 0,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "有效治疗",
+        "毒伤时间"
+      ],
+      "provides": [
+        "POISON",
+        "SHIELD_GAIN"
+      ],
+      "weakness": "爆发敌人会在毒发前击穿血量。",
+      "visual": "胸口插着已过期试用胸牌",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_ZM_2A",
+      "family": "ZM",
+      "rank": 2,
+      "branch": "A",
+      "name": "喷嚏播报员",
+      "role": "精英毒传播",
+      "undead_form": "喉部鼓胀的无呼吸腐尸",
+      "hp": 185,
+      "atk": 15,
+      "armor": 5,
+      "aps": 0.75,
+      "move": 1.7,
+      "range": 3.5,
+      "crit_rate": 0.05,
+      "regen": 0.005,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_ZM_2A_P",
+        "name": "本地疫情简报",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "普攻目标及其2米内最近2名敌人",
+        "effect": "每人施加POISON 2层持续6秒；本技能对每目标最多4层。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_ZM_2A_V",
+        "name": "重复播报",
+        "trigger": "POISON_TICK：自身施加的毒对敌人造成实际伤害",
+        "target": "该中毒敌人2米内最近1名未带POISON敌人",
+        "effect": "施加POISON 1层持续4秒；若无合格目标则不触发，不刷新已有毒。",
+        "coefficient": 0,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "敌人聚集",
+        "延长交战"
+      ],
+      "provides": [
+        "范围POISON",
+        "POISON_TICK"
+      ],
+      "weakness": "单个强敌会让传播能力闲置。",
+      "visual": "腐尸喉部挂着扩音漏斗",
+      "scope": "MVP",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_ZM_2B",
+      "family": "ZM",
+      "rank": 2,
+      "branch": "B",
+      "name": "尸后护理员",
+      "role": "精英修复前排",
+      "undead_form": "用自己的死肉修补同伴的缝合腐尸",
+      "hp": 200,
+      "atk": 13,
+      "armor": 5,
+      "aps": 0.7,
+      "move": 1.7,
+      "range": 2,
+      "crit_rate": 0.05,
+      "regen": 0.008,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_ZM_2B_P",
+        "name": "售后缝合",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "4米内生命比例最低的2名正式友军",
+        "effect": "各恢复相当于自身100%攻击力的生命；无伤员不储存治疗。",
+        "coefficient": 1,
+        "cooldown": 3,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_ZM_2B_V",
+        "name": "回访",
+        "trigger": "EFFECTIVE_HEAL：自身主技实际治疗了友军",
+        "target": "本次被治疗友军2米内最近1名敌人",
+        "effect": "施加POISON 1层持续5秒；每次主技至多触发1次回访。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "受伤正式友军",
+        "贴近战线"
+      ],
+      "provides": [
+        "EFFECTIVE_HEAL",
+        "POISON"
+      ],
+      "weakness": "没有安全攻击目标时无法稳定启动治疗。",
+      "visual": "缝合针是一根断肋骨",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_ZM_3A",
+      "family": "ZM",
+      "rank": 3,
+      "branch": "A",
+      "name": "腐败发言棺",
+      "role": "统领毒域",
+      "undead_form": "被钉在半截棺中的鼓胀腐尸",
+      "hp": 260,
+      "atk": 18,
+      "armor": 7,
+      "aps": 0.7,
+      "move": 1.4,
+      "range": 3,
+      "crit_rate": 0.05,
+      "regen": 0.005,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_ZM_3A_P",
+        "name": "统一口径",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "普攻目标为中心半径3米最近4敌",
+        "effect": "各施加POISON 2层持续6秒；本技能每目标最多5层。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 4,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_ZM_3A_V",
+        "name": "遗体续订",
+        "trigger": "ENEMY_KO：6米内原生敌人死亡且留下可用尸骸",
+        "target": "6米内最近1具可用尸骸",
+        "effect": "消耗1具尸骸，恢复自身12%最大生命，并向3米内最近2敌各施加POISON 1层持续5秒；无尸骸不发动。",
+        "coefficient": 0,
+        "cooldown": 5,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "尸骸供应",
+        "密集敌群"
+      ],
+      "provides": [
+        "CORPSE_CONSUME",
+        "EFFECTIVE_HEAL",
+        "群体POISON"
+      ],
+      "weakness": "少敌首领战缺少尸骸。",
+      "visual": "棺板上刻着情况稳定",
+      "scope": "MVP",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_ZM_3B",
+      "family": "ZM",
+      "rank": 3,
+      "branch": "B",
+      "name": "毒账核销师",
+      "role": "统领毒素兑现",
+      "undead_form": "腹腔内吊满毒囊的干瘪死尸",
+      "hp": 210,
+      "atk": 23,
+      "armor": 6,
+      "aps": 0.85,
+      "move": 1.7,
+      "range": 4.5,
+      "crit_rate": 0.05,
+      "regen": 0.005,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_ZM_3B_P",
+        "name": "提前结清",
+        "trigger": "BASIC_HIT：自身每第4次命中",
+        "target": "本次普攻目标",
+        "effect": "造成100%攻击力法术技能伤害，并消耗目标最多3层POISON；每消耗1层额外造成40%攻击力法术伤害。消耗不触发POISON_TICK。",
+        "coefficient": 1,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_ZM_3B_V",
+        "name": "清账返修",
+        "trigger": "POISON_TICK：5米内敌人受到实际毒伤",
+        "target": "5米内生命比例最低的正式友军",
+        "effect": "恢复相当于自身35%攻击力生命。",
+        "coefficient": 0.35,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "其他毒源",
+        "受伤正式友军"
+      ],
+      "provides": [
+        "毒素爆发",
+        "EFFECTIVE_HEAL"
+      ],
+      "weakness": "过快兑现会削弱依靠毒跳数的队友。",
+      "visual": "毒囊上写着账已烂尾",
+      "scope": "Expansion",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_ZM_4",
+      "family": "ZM",
+      "rank": 4,
+      "branch": "LORD",
+      "name": "终身腐利院长",
+      "role": "领主毒与修复核心",
+      "undead_form": "由多具死尸缝合的巨大腐尸领主",
+      "hp": 330,
+      "atk": 23,
+      "armor": 10,
+      "aps": 0.7,
+      "move": 1.7,
+      "range": 3,
+      "crit_rate": 0.05,
+      "regen": 0.008,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_ZM_4_P",
+        "name": "包吃包腐",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "5米内生命比例最低3名正式友军与最近3敌",
+        "effect": "友军各恢复100%攻击力生命；敌人各获POISON 2层持续6秒，本技能每敌最多5层。",
+        "coefficient": 1,
+        "cooldown": 4,
+        "max_targets": 6,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_ZM_4_V",
+        "name": "好评返肉",
+        "trigger": "EFFECTIVE_HEAL：5米内正式友军得到有效治疗",
+        "target": "被治疗友军2米内最近1敌",
+        "effect": "造成等于实际治疗量40%的法术技能伤害；单次伤害不超过自身150%攻击力。",
+        "coefficient": 0,
+        "cooldown": 1,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "有效治疗来源",
+        "中近距离阵型"
+      ],
+      "provides": [
+        "群疗",
+        "POISON",
+        "治疗转输出"
+      ],
+      "weakness": "队伍散开后两端受益者难同时覆盖。",
+      "visual": "腹部招牌写着入住即终身",
+      "scope": "MVP",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_HR_1",
+      "family": "HR",
+      "rank": 1,
+      "branch": "BASE",
+      "name": "迟到丧马",
+      "role": "入门冲锋",
+      "undead_form": "无骑手的腐烂亡马，骨缝透出幽火",
+      "hp": 110,
+      "atk": 17,
+      "armor": 4,
+      "aps": 0.9,
+      "move": 3.8,
+      "range": 1.4,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0.05,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HR_1_P",
+        "name": "最后一公里",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "距自身2至6米的最近敌人；没有则当前普攻目标",
+        "effect": "向目标冲刺，位移最多6米；路径最多命中2敌，各造成80%攻击力物理技能伤害。位移结束产生1次DASH_END，位移不足1米不产生。",
+        "coefficient": 0.8,
+        "cooldown": 4,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HR_1_V",
+        "name": "到货震动",
+        "trigger": "DASH_END：自身移动至少1米后结束冲刺",
+        "target": "终点2米内最近1敌",
+        "effect": "施加EXPOSED 1层持续4秒；本技能同目标最多1层。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "开阔路径",
+        "前排吸引"
+      ],
+      "provides": [
+        "DASH_END",
+        "EXPOSED"
+      ],
+      "weakness": "被包围时缺乏有效冲刺距离。",
+      "visual": "鬃毛缠满晚点标签",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HR_2A",
+      "family": "HR",
+      "rank": 2,
+      "branch": "A",
+      "name": "拒收骨枪骑",
+      "role": "精英穿阵",
+      "undead_form": "胸骨向前生长成骨枪的丧尸战马，无活人骑手",
+      "hp": 155,
+      "atk": 23,
+      "armor": 7,
+      "aps": 0.9,
+      "move": 4.2,
+      "range": 1.4,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0.05,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HR_2A_P",
+        "name": "签收由不得你",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "前方2至8米最远敌人",
+        "effect": "冲刺至目标近侧，位移最多8米；路径最多3敌各受120%攻击力物理技能伤害。至少移动1米产生DASH_END。",
+        "coefficient": 1.2,
+        "cooldown": 5,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HR_2A_V",
+        "name": "拆包骨刺",
+        "trigger": "DASH_END：自身冲刺结束",
+        "target": "终点2米内最近2敌",
+        "effect": "各施加EXPOSED 1层持续5秒，本技能每目标最多2层。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "EXPOSED受益者",
+        "侧翼路线"
+      ],
+      "provides": [
+        "穿阵伤害",
+        "DASH_END",
+        "EXPOSED"
+      ],
+      "weakness": "深入敌后可能脱离治疗范围。",
+      "visual": "骨枪上穿着一摞拒收单",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HR_2B",
+      "family": "HR",
+      "rank": 2,
+      "branch": "B",
+      "name": "冷链灵柩马",
+      "role": "精英移动补给",
+      "undead_form": "拖着小骨棺的冻僵亡马",
+      "hp": 155,
+      "atk": 16,
+      "armor": 8,
+      "aps": 0.9,
+      "move": 3.6,
+      "range": 1.4,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0.05,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HR_2B_P",
+        "name": "冷链配送",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "6米内生命比例最低的正式友军",
+        "effect": "冲刺到该友军旁1米处，最多移动6米；抵达后恢复目标130%攻击力生命。无伤员则不冲刺也不消耗普攻计数。",
+        "coefficient": 1.3,
+        "cooldown": 5,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HR_2B_V",
+        "name": "到站降温",
+        "trigger": "DASH_END：自身冲刺结束",
+        "target": "终点2米内最近2敌",
+        "effect": "各施加CHILL 1层持续4秒；本技能每目标最多2层。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "分散受伤友军",
+        "安全回场路径"
+      ],
+      "provides": [
+        "DASH_END",
+        "EFFECTIVE_HEAL",
+        "CHILL"
+      ],
+      "weakness": "集中承伤时奔跑时间会降低治疗效率。",
+      "visual": "棺材写着请勿反复解冻",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HR_3A",
+      "family": "HR",
+      "rank": 3,
+      "branch": "A",
+      "name": "追尾骨骑长",
+      "role": "统领位移控制",
+      "undead_form": "双脊椎拼接的高大亡马，骨枪与躯体一体",
+      "hp": 190,
+      "atk": 27,
+      "armor": 9,
+      "aps": 0.9,
+      "move": 4.4,
+      "range": 1.4,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0.05,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HR_3A_P",
+        "name": "全责冲锋",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "2至9米生命比例最低的敌人",
+        "effect": "冲刺最多9米，路径最多4敌各受110%攻击力物理伤害并沿冲刺方向推开1.5米；大型敌人仅受伤害。",
+        "coefficient": 1.1,
+        "cooldown": 5,
+        "max_targets": 4,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HR_3A_V",
+        "name": "事故现场",
+        "trigger": "DASH_END：自身冲刺至少1米后结束",
+        "target": "终点3米内最近3敌",
+        "effect": "各施加EXPOSED 1层持续5秒，并使自身获得12%最大生命BONE_ARMOR持续4秒。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 4,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "追击目标",
+        "范围伤害队友"
+      ],
+      "provides": [
+        "位移聚敌",
+        "DASH_END",
+        "SHIELD_GAIN"
+      ],
+      "weakness": "推动敌人可能把目标推出友方法术范围。",
+      "visual": "尾椎绑着全责二字",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HR_3B",
+      "family": "HR",
+      "rank": 3,
+      "branch": "B",
+      "name": "回魂驿站长",
+      "role": "统领机动支援",
+      "undead_form": "背着幽灵骨铃与空灵柩的亡马",
+      "hp": 190,
+      "atk": 20,
+      "armor": 9,
+      "aps": 0.9,
+      "move": 4.0,
+      "range": 1.4,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0.05,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HR_3B_P",
+        "name": "换乘阴间线",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "8米内最远的受伤正式友军",
+        "effect": "冲刺至友军旁1米，最多移动8米；治疗终点3米内生命比例最低3名正式友军，各100%攻击力。",
+        "coefficient": 1,
+        "cooldown": 5,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HR_3B_V",
+        "name": "候车区",
+        "trigger": "DASH_END：自身冲刺至少1米后结束",
+        "target": "终点3米内最近3名正式友军",
+        "effect": "各获得HASTE 1层持续4秒；本技能最多1层。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "分散友军",
+        "攻击速度受益者"
+      ],
+      "provides": [
+        "DASH_END",
+        "EFFECTIVE_HEAL",
+        "HASTE"
+      ],
+      "weakness": "没有受伤远端友军时主要机制启动减少。",
+      "visual": "马背站牌只写单程",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HR_4",
+      "family": "HR",
+      "rank": 4,
+      "branch": "LORD",
+      "name": "末班灵车王",
+      "role": "领主循环冲锋",
+      "undead_form": "六足丧尸马与巨大骨灵车融为一体的亡灵",
+      "hp": 245,
+      "atk": 30,
+      "armor": 13,
+      "aps": 0.9,
+      "move": 4.3,
+      "range": 1.8,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0.05,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HR_4_P",
+        "name": "末班不等活人",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "2至10米最远敌人",
+        "effect": "冲刺最多10米，路径最多5敌各受130%攻击力物理伤害；至少移动1米产生DASH_END。",
+        "coefficient": 1.3,
+        "cooldown": 5,
+        "max_targets": 5,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HR_4_V",
+        "name": "有座请上车",
+        "trigger": "DASH_END：自身冲刺结束",
+        "target": "终点4米内生命比例最低3名正式友军",
+        "effect": "各恢复90%攻击力生命并获得90%攻击力BONE_ARMOR持续4秒。",
+        "coefficient": 0.9,
+        "cooldown": 4,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "长战线",
+        "近战同伴"
+      ],
+      "provides": [
+        "穿阵伤害",
+        "DASH_END",
+        "EFFECTIVE_HEAL",
+        "SHIELD_GAIN"
+      ],
+      "weakness": "进入敌后会同时牺牲回程时间和远端保护。",
+      "visual": "灵车顶牌写末班车不退票",
+      "scope": "MVP",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HD_1",
+      "family": "HD",
+      "rank": 1,
+      "branch": "BASE",
+      "name": "单手临时工",
+      "role": "入门高频近战",
+      "undead_form": "一只被死灵术驱动的爬行断手",
+      "hp": 80,
+      "atk": 9,
+      "armor": 1,
+      "aps": 1.5,
+      "move": 3.3,
+      "range": 0.8,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HD_1_P",
+        "name": "加班两下",
+        "trigger": "BASIC_HIT：自身每第4次命中",
+        "target": "本次普攻目标",
+        "effect": "连续造成2次45%攻击力物理技能伤害，间隔0.15秒；目标死亡后剩余次数取消。",
+        "coefficient": 0.45,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HD_1_V",
+        "name": "收工摸鱼",
+        "trigger": "ENEMY_KO：3米内原生敌人死亡",
+        "target": "自身",
+        "effect": "恢复6%最大生命；不消耗尸骸，也不制造现金或经验。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "前排牵制",
+        "攻击速度"
+      ],
+      "provides": [
+        "高频普攻",
+        "EFFECTIVE_HEAL"
+      ],
+      "weakness": "生命低，惧怕范围攻击。",
+      "visual": "腕部仍缠着打卡纸条",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HD_2A",
+      "family": "HD",
+      "rank": 2,
+      "branch": "A",
+      "name": "拆指包工头",
+      "role": "精英手群召唤",
+      "undead_form": "多只断手缝成的爬行死灵，掌心长出小骨指",
+      "hp": 115,
+      "atk": 12,
+      "armor": 3,
+      "aps": 1.2,
+      "move": 3.3,
+      "range": 0.8,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HD_2A_P",
+        "name": "再分一个岗位",
+        "trigger": "BASIC_HIT：自身每第4次命中",
+        "target": "自身1米内空位",
+        "effect": "召唤1只临时骨指，存活8秒；单施法者最多3只。骨指HP30、ATK5、PHY、APS1.2、护甲0、移速3、射程0.7、暴击0；无技能无尸骸，服从全队12只临时兵上限。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HD_2A_V",
+        "name": "岗位继承",
+        "trigger": "ALLY_KO：自身召唤的骨指被敌方击倒",
+        "target": "自身",
+        "effect": "获得HASTE 1层持续4秒；本技能最多2层。骨指寿命到期不触发。",
+        "coefficient": 0,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "攻击速度",
+        "临时兵空位"
+      ],
+      "provides": [
+        "SUMMON",
+        "ALLY_KO",
+        "高频前线接触"
+      ],
+      "weakness": "AOE会迅速清空小骨指；控制本体会切断补充。",
+      "visual": "每根手指各戴一枚工牌",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HD_2B",
+      "family": "HD",
+      "rank": 2,
+      "branch": "B",
+      "name": "漏电接线手",
+      "role": "精英电水连接",
+      "undead_form": "浸泡尸水的断手，骨节间跳动死灵电弧",
+      "hp": 100,
+      "atk": 14,
+      "armor": 3,
+      "aps": 1.1,
+      "move": 3.3,
+      "range": 4.5,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HD_2B_P",
+        "name": "湿手操作",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "本次普攻目标",
+        "effect": "造成80%攻击力法术技能伤害，并施加WET持续5秒、SHOCK 1层持续4秒。",
+        "coefficient": 0.8,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HD_2B_V",
+        "name": "带电转交",
+        "trigger": "DIRECT_CRIT：自身普攻暴击",
+        "target": "被暴击目标2米内最近另一敌人",
+        "effect": "造成60%攻击力法术技能伤害；目标若已有WET，再施加SHOCK 1层持续4秒。",
+        "coefficient": 0.6,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "暴击率",
+        "WET受益者"
+      ],
+      "provides": [
+        "WET",
+        "SHOCK",
+        "法术补伤"
+      ],
+      "weakness": "单体敌人会限制被动跳转。",
+      "visual": "掌心写着禁止湿手操作",
+      "scope": "Expansion",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_HD_3A",
+      "family": "HD",
+      "rank": 3,
+      "branch": "A",
+      "name": "千手裁员官",
+      "role": "统领尸骸手群",
+      "undead_form": "由死者断手与手腕骨堆成的爬行群体",
+      "hp": 150,
+      "atk": 17,
+      "armor": 5,
+      "aps": 1.3,
+      "move": 3.3,
+      "range": 1,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HD_3A_P",
+        "name": "一岗多用",
+        "trigger": "BASIC_HIT：自身每第4次命中",
+        "target": "自身1米内空位及5米内最近可用尸骸",
+        "effect": "召唤1只临时骨指，存活10秒；若有尸骸则自动消耗1具并额外召唤1只。单施法者最多4只。骨指HP35、ATK7、PHY、APS1.2、护甲0、移速3、射程0.7、暴击0；无技能无尸骸。必须先检查2个空余名额才消耗尸骸，否则只尝试基础1只。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HD_3A_V",
+        "name": "空岗补贴",
+        "trigger": "SUMMON：自身成功生成骨指",
+        "target": "自身",
+        "effect": "获得相当于自身5%最大生命的BONE_ARMOR持续4秒；本被动护盾最多15%最大生命。",
+        "coefficient": 0,
+        "cooldown": 1,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "尸骸",
+        "临时兵空位"
+      ],
+      "provides": [
+        "SUMMON",
+        "CORPSE_CONSUME",
+        "SHIELD_GAIN"
+      ],
+      "weakness": "与其他尸骸消费者争抢资源。",
+      "visual": "工牌数量远多于手指",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HD_3B",
+      "family": "HD",
+      "rank": 3,
+      "branch": "B",
+      "name": "抹账断腕",
+      "role": "统领切后排刺客",
+      "undead_form": "腕骨磨成镰刃的巨大爬行断手",
+      "hp": 155,
+      "atk": 23,
+      "armor": 5,
+      "aps": 1.2,
+      "move": 3.3,
+      "range": 1.1,
+      "crit_rate": 0.15,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HD_3B_P",
+        "name": "签字画押",
+        "trigger": "BASIC_HIT：自身每第3次命中；另于入场2秒后、此后每7秒切后排",
+        "target": "本次普攻目标",
+        "effect": "入场2秒后、此后每7秒瞬移至敌方射程最远单位背后，施加SOUL_BRAND持续5秒，并使自身暴击率提高40个百分点、持续2.5秒；若同射程则优先更靠后敌人。每第3次普攻命中另施加SOUL_BRAND持续5秒，并造成110%攻击力物理技能伤害；目标生命比例低于30%时改为170%。切后排计时独立，不缩短普攻或技能冷却。",
+        "coefficient": 1.1,
+        "cooldown": 2.5,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HD_3B_V",
+        "name": "尾款结清",
+        "trigger": "DIRECT_CRIT：自身普攻暴击且目标带SOUL_BRAND",
+        "target": "自身",
+        "effect": "恢复相当于自身80%攻击力的生命；不消耗SOUL_BRAND。",
+        "coefficient": 0.8,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "暴击率",
+        "SOUL_BRAND",
+        "前排"
+      ],
+      "provides": [
+        "SOUL_BRAND",
+        "单体收割",
+        "EFFECTIVE_HEAL"
+      ],
+      "weakness": "深入后排后会遭集火；后方守卫与范围伤害可压制，治疗者距离可能过远。",
+      "visual": "漂浮断腕握短刃，切入时留下紫色残影和灵魂烙印",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_HD_4",
+      "family": "HD",
+      "rank": 4,
+      "branch": "LORD",
+      "name": "十指董事会",
+      "role": "领主手群与标记核心",
+      "undead_form": "十只巨手围绕幽灵掌心缝合成的纯死灵",
+      "hp": 210,
+      "atk": 24,
+      "armor": 8,
+      "aps": 1.25,
+      "move": 3.3,
+      "range": 2,
+      "crit_rate": 0.1,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_HD_4_P",
+        "name": "全票通过",
+        "trigger": "BASIC_HIT：自身每第4次命中",
+        "target": "自身1米内空位",
+        "effect": "召唤2只临时骨掌，存活10秒；单施法者最多4只。骨掌HP55、ATK10、PHY、APS1.0、护甲3、移速3、射程1、暴击0；无技能无尸骸。服从全队12上限。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_HD_4_V",
+        "name": "一致通过",
+        "trigger": "ALLY_KO：自身召唤的骨掌被敌方击倒",
+        "target": "倒地位置3米内生命比例最低1敌",
+        "effect": "施加SOUL_BRAND持续5秒，并造成110%攻击力法术技能伤害；寿命到期不触发。",
+        "coefficient": 1.1,
+        "cooldown": 1.5,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "临时兵空位",
+        "AOE承伤节奏"
+      ],
+      "provides": [
+        "SUMMON",
+        "ALLY_KO",
+        "SOUL_BRAND"
+      ],
+      "weakness": "召唤满额或本体受控会中断主要价值。",
+      "visual": "十只手永远一致举手，没人知道谁主持",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_BL_1",
+      "family": "BL",
+      "rank": 1,
+      "branch": "BASE",
+      "name": "骨铃实习生",
+      "role": "入门治疗",
+      "undead_form": "漂浮骷髅头操纵一只骨铃的亡灵",
+      "hp": 95,
+      "atk": 12,
+      "armor": 2,
+      "aps": 0.85,
+      "move": 2.2,
+      "range": 5,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_BL_1_P",
+        "name": "例行慰问",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "5米内生命比例最低1名正式友军",
+        "effect": "恢复150%攻击力生命；无伤员则不储存治疗。",
+        "coefficient": 1.5,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_BL_1_V",
+        "name": "慰问附件",
+        "trigger": "EFFECTIVE_HEAL：自身主技实际治疗友军",
+        "target": "该治疗目标",
+        "effect": "给予相当于本次实际治疗量25%的BONE_ARMOR持续3秒；本技能最多1份护盾。",
+        "coefficient": 0,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "受伤正式友军",
+        "攻击目标"
+      ],
+      "provides": [
+        "EFFECTIVE_HEAL",
+        "SHIELD_GAIN"
+      ],
+      "weakness": "被远程压制无法攻击时治疗减少。",
+      "visual": "骷髅头上贴着实习勿催",
+      "scope": "MVP",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_BL_2A",
+      "family": "BL",
+      "rank": 2,
+      "branch": "A",
+      "name": "报丧修复师",
+      "role": "精英群体治疗",
+      "undead_form": "由幽灵与骷髅肋骨组成的骨铃师",
+      "hp": 125,
+      "atk": 15,
+      "armor": 4,
+      "aps": 0.85,
+      "move": 2.2,
+      "range": 5.5,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_BL_2A_P",
+        "name": "集体慰问",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "5米内生命比例最低友军为中心3米内最多3名受伤正式友军",
+        "effect": "各恢复95%攻击力生命。",
+        "coefficient": 0.95,
+        "cooldown": 3,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_BL_2A_V",
+        "name": "活不了但能动",
+        "trigger": "EFFECTIVE_HEAL：自身主技实际治疗了友军",
+        "target": "本次主技中实际治疗量最高的1名正式友军",
+        "effect": "给予HASTE 1层持续3秒，本技能最多1层；每次主技仅选1人。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "聚集伤员",
+        "普攻保护"
+      ],
+      "provides": [
+        "群体EFFECTIVE_HEAL",
+        "HASTE"
+      ],
+      "weakness": "分散布阵会降低群疗效率。",
+      "visual": "骨铃上刻着尚可继续工作",
+      "scope": "MVP",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_BL_2B",
+      "family": "BL",
+      "rank": 2,
+      "branch": "B",
+      "name": "冻薪报丧人",
+      "role": "精英冷系控制",
+      "undead_form": "握着结霜骨铃的无腿幽灵亡灵",
+      "hp": 115,
+      "atk": 18,
+      "armor": 4,
+      "aps": 0.85,
+      "move": 2.2,
+      "range": 6,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_BL_2B_P",
+        "name": "冷静通知",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "普攻目标及其2米内最近1敌",
+        "effect": "各造成70%攻击力法术技能伤害并施加CHILL 1层持续4秒。",
+        "coefficient": 0.7,
+        "cooldown": 3,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_BL_2B_V",
+        "name": "噩耗复读",
+        "trigger": "ENEMY_KO：6米内原生敌人死亡",
+        "target": "死者3米内最近1敌",
+        "effect": "施加CHILL 1层持续4秒；无敌人则不触发。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "其他CHILL来源",
+        "控制窗口"
+      ],
+      "provides": [
+        "CHILL",
+        "法术伤害"
+      ],
+      "weakness": "大敌冻结抗性会削弱控场。",
+      "visual": "铃身写着工资冻结中",
+      "scope": "Expansion",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_BL_3A",
+      "family": "BL",
+      "rank": 3,
+      "branch": "A",
+      "name": "追悼指挥",
+      "role": "统领治疗节奏",
+      "undead_form": "六臂骷髅铃师，手臂全由骨头组成",
+      "hp": 155,
+      "atk": 20,
+      "armor": 6,
+      "aps": 0.9,
+      "move": 2.2,
+      "range": 6,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_BL_3A_P",
+        "name": "奏响返工曲",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "6米内生命比例最低3名正式友军",
+        "effect": "各恢复100%攻击力生命，并给予HASTE 1层持续4秒；本技能HASTE最多1层。",
+        "coefficient": 1,
+        "cooldown": 4,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_BL_3A_V",
+        "name": "弦断续奏",
+        "trigger": "SHIELD_BREAK：6米内正式友军护盾被敌方耗尽",
+        "target": "护盾破裂的正式友军",
+        "effect": "恢复60%攻击力生命。",
+        "coefficient": 0.6,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "护盾前排",
+        "普攻触发单位"
+      ],
+      "provides": [
+        "EFFECTIVE_HEAL",
+        "HASTE",
+        "破盾修复"
+      ],
+      "weakness": "单个目标爆发受伤可能超过群体分摊治疗。",
+      "visual": "六只骨手各拿一张不同的悼词",
+      "scope": "MVP",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_BL_3B",
+      "family": "BL",
+      "rank": 3,
+      "branch": "B",
+      "name": "触电悼词官",
+      "role": "统领电系法术",
+      "undead_form": "骨铃内部关着雷光幽灵的死灵法师",
+      "hp": 145,
+      "atk": 24,
+      "armor": 6,
+      "aps": 0.9,
+      "move": 2.2,
+      "range": 6.5,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_BL_3B_P",
+        "name": "请保持通电",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "普攻目标及其3米内最近2敌",
+        "effect": "各造成100%攻击力法术技能伤害；带WET者额外获得SHOCK 1层持续4秒。",
+        "coefficient": 1,
+        "cooldown": 3.5,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_BL_3B_V",
+        "name": "电报复核",
+        "trigger": "DIRECT_CRIT：自身普攻暴击",
+        "target": "被暴击目标",
+        "effect": "施加WET持续5秒；若目标原本已有WET，改额外造成60%攻击力法术伤害。",
+        "coefficient": 0.6,
+        "cooldown": 2,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "WET来源",
+        "暴击率"
+      ],
+      "provides": [
+        "群体法术",
+        "SHOCK",
+        "WET"
+      ],
+      "weakness": "缺WET时能输出但难以发挥传导收益。",
+      "visual": "悼词烤焦了三遍还在念",
+      "scope": "Expansion",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_BL_4",
+      "family": "BL",
+      "rank": 4,
+      "branch": "LORD",
+      "name": "哀乐总裁",
+      "role": "领主治疗与诅咒核心",
+      "undead_form": "悬浮巨型骷髅与环绕亡魂共同敲击骨钟",
+      "hp": 210,
+      "atk": 26,
+      "armor": 10,
+      "aps": 0.9,
+      "move": 2.2,
+      "range": 7,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0,
+      "block_reduction": 0.4,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_BL_4_P",
+        "name": "集团慰问",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "全场生命比例最低4名正式友军",
+        "effect": "各恢复110%攻击力生命；实际获得治疗者同时获得60%攻击力BONE_ARMOR持续4秒。",
+        "coefficient": 1.1,
+        "cooldown": 4,
+        "max_targets": 4,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_BL_4_V",
+        "name": "悼词回响",
+        "trigger": "ALLY_KO：8米内友军被敌方击倒",
+        "target": "倒地位置3米内最近3敌",
+        "effect": "各施加SOUL_BRAND持续6秒，并造成80%攻击力法术技能伤害；同一友军每波仅触发1次，管理献祭和寿命到期不触发。",
+        "coefficient": 0.8,
+        "cooldown": 3,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "受伤正式队伍",
+        "可消耗临时前排"
+      ],
+      "provides": [
+        "群疗",
+        "SHIELD_GAIN",
+        "SOUL_BRAND",
+        "倒地补伤"
+      ],
+      "weakness": "只增加召唤数量不能解决正式核心被集火。",
+      "visual": "骨钟铭牌写本公司负责送终",
+      "scope": "MVP",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_CF_1",
+      "family": "CF",
+      "rank": 1,
+      "branch": "BASE",
+      "name": "经济适用棺",
+      "role": "入门阵地前排",
+      "undead_form": "半开的木棺与其中会爬行的干尸亡灵",
+      "hp": 185,
+      "atk": 16,
+      "armor": 10,
+      "aps": 0.55,
+      "move": 1.5,
+      "range": 2.5,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.08,
+      "block_reduction": 0.5,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_CF_1_P",
+        "name": "最低居住保障",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "自身",
+        "effect": "获得15%最大生命BONE_ARMOR持续5秒；本技能护盾最多1份。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_CF_1_V",
+        "name": "就地入住",
+        "trigger": "ENEMY_KO：3米内原生敌人死亡且有可用尸骸",
+        "target": "3米内最近1具可用尸骸",
+        "effect": "消耗尸骸并恢复自身10%最大生命；无尸骸不发动。",
+        "coefficient": 0,
+        "cooldown": 5,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "近战敌人",
+        "尸骸"
+      ],
+      "provides": [
+        "SHIELD_GAIN",
+        "CORPSE_CONSUME",
+        "EFFECTIVE_HEAL"
+      ],
+      "weakness": "移速低，容易被远程拉扯。",
+      "visual": "棺材门口挂着已交房",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_CF_2A",
+      "family": "CF",
+      "rank": 2,
+      "branch": "A",
+      "name": "合租停尸棺",
+      "role": "精英驻点召唤",
+      "undead_form": "两具小干尸挤在同一口会移动的亡灵棺中",
+      "hp": 230,
+      "atk": 17,
+      "armor": 13,
+      "aps": 0.55,
+      "move": 1.5,
+      "range": 2.5,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.08,
+      "block_reduction": 0.5,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_CF_2A_P",
+        "name": "还有一个床位",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "自身1米内空位",
+        "effect": "召唤1只临时棺仆，存活10秒；单施法者最多2只。棺仆HP60、ATK7、PHY、APS0.8、护甲4、移速2、射程1、暴击0；无技能无尸骸，服从全队12上限。",
+        "coefficient": 0,
+        "cooldown": 5,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_CF_2A_V",
+        "name": "押金暂不退",
+        "trigger": "ALLY_KO：自身临时棺仆被敌方击倒",
+        "target": "自身",
+        "effect": "获得12%最大生命BONE_ARMOR持续5秒；本被动护盾最多1份。寿命到期不触发。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "临时兵空位",
+        "持续交战"
+      ],
+      "provides": [
+        "SUMMON",
+        "ALLY_KO",
+        "SHIELD_GAIN"
+      ],
+      "weakness": "召唤节奏较慢，敌方速攻会抢先击穿。",
+      "visual": "棺盖贴着两室一厅",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_CF_2B",
+      "family": "CF",
+      "rank": 2,
+      "branch": "B",
+      "name": "焚单火棺",
+      "role": "精英燃烧法术",
+      "undead_form": "棺中干尸与蓝色尸火共生的亡灵",
+      "hp": 170,
+      "atk": 22,
+      "armor": 8,
+      "aps": 0.65,
+      "move": 1.5,
+      "range": 5,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.08,
+      "block_reduction": 0.5,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_CF_2B_P",
+        "name": "销毁历史账单",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "普攻目标周围2米最近3敌",
+        "effect": "各造成80%攻击力法术技能伤害并施加BURN 1层持续5秒。",
+        "coefficient": 0.8,
+        "cooldown": 4,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_CF_2B_V",
+        "name": "木料回收",
+        "trigger": "CORPSE_CONSUME：5米内正式友军实际消耗尸骸",
+        "target": "自身",
+        "effect": "获得HASTE 1层持续4秒；本技能最多1层。",
+        "coefficient": 0,
+        "cooldown": 3,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "敌人聚集",
+        "尸骸消费者"
+      ],
+      "provides": [
+        "BURN",
+        "范围法术",
+        "尸骸转攻速"
+      ],
+      "weakness": "燃烧与POISON争夺击杀节奏，移动敌人容易离群。",
+      "visual": "棺材外贴着票据焚毁处",
+      "scope": "Expansion",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_CF_3A",
+      "family": "CF",
+      "rank": 3,
+      "branch": "A",
+      "name": "钉子户守棺",
+      "role": "统领阵地保护",
+      "undead_form": "由铁钉与棺木固定的重型干尸亡灵",
+      "hp": 295,
+      "atk": 21,
+      "armor": 18,
+      "aps": 0.55,
+      "move": 1.3,
+      "range": 2,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.08,
+      "block_reduction": 0.5,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_CF_3A_P",
+        "name": "此处谢绝拆迁",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "自身及3米内最近3敌",
+        "effect": "自身获得22%最大生命BONE_ARMOR持续6秒；敌人TAUNTED指向自身2.5秒。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 4,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_CF_3A_V",
+        "name": "遗产代管",
+        "trigger": "ALLY_KO：4米内正式友军首次倒地并留下可用尸骸",
+        "target": "该次正式友军尸骸",
+        "effect": "消耗尸骸，使4米内生命比例最低2名正式友军各恢复100%攻击力生命；不复活被消耗者，不影响其战后名单恢复。",
+        "coefficient": 1,
+        "cooldown": 5,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "集中阵型",
+        "正式军队承伤"
+      ],
+      "provides": [
+        "TAUNT",
+        "SHIELD_GAIN",
+        "CORPSE_CONSUME",
+        "EFFECTIVE_HEAL"
+      ],
+      "weakness": "移动速度极低，绕侧敌人能越过阵地。",
+      "visual": "棺板写着人在棺在，字已掉一半",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    },
+    {
+      "id": "U_CF_3B",
+      "family": "CF",
+      "rank": 3,
+      "branch": "B",
+      "name": "骨灰代理商",
+      "role": "统领尸骸法术",
+      "undead_form": "棺盖内侧遍布骨灰符文的幽灵亡灵",
+      "hp": 200,
+      "atk": 28,
+      "armor": 9,
+      "aps": 0.7,
+      "move": 1.5,
+      "range": 6,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.08,
+      "block_reduction": 0.5,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_CF_3B_P",
+        "name": "一站式处理",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "普攻目标周围3米最近3敌及6米内最近1具可用尸骸",
+        "effect": "各敌人受到100%攻击力法术伤害；有尸骸则消耗1具，倍率提高至180%。无尸骸仍正常施法。",
+        "coefficient": 1,
+        "cooldown": 4,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_CF_3B_V",
+        "name": "处理回执",
+        "trigger": "CORPSE_CONSUME：自身主技成功消耗尸骸",
+        "target": "被主技命中的最近1敌",
+        "effect": "施加SOUL_BRAND持续6秒。",
+        "coefficient": 0,
+        "cooldown": 4,
+        "max_targets": 1,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "尸骸供应",
+        "聚集敌人"
+      ],
+      "provides": [
+        "CORPSE_CONSUME",
+        "范围法术",
+        "SOUL_BRAND"
+      ],
+      "weakness": "与其他尸骸流共队时需分配稀缺尸骸。",
+      "visual": "骨灰罐上印着请勿寄错地址",
+      "scope": "Expansion",
+      "basic_damage_type": "MAG"
+    },
+    {
+      "id": "U_CF_4",
+      "family": "CF",
+      "rank": 4,
+      "branch": "LORD",
+      "name": "阴间地产王",
+      "role": "领主棺阵与尸骸核心",
+      "undead_form": "巨型王棺内盘踞多层骨架组成的亡灵领主",
+      "hp": 360,
+      "atk": 29,
+      "armor": 20,
+      "aps": 0.65,
+      "move": 1.3,
+      "range": 3,
+      "crit_rate": 0.05,
+      "regen": 0,
+      "block_rate": 0.08,
+      "block_reduction": 0.5,
+      "lifesteal": 0,
+      "crit_mult": 1.5,
+      "primary": {
+        "id": "U_CF_4_P",
+        "name": "新增永久住户",
+        "trigger": "BASIC_HIT：自身每第3次命中",
+        "target": "自身2米内空位及6米内最近1具可用尸骸",
+        "effect": "召唤1只临时棺卫，存活12秒；若存在尸骸且至少2个临时名额可用，消耗1具并额外召唤1只。单施法者最多3只。棺卫HP90、ATK12、PHY、APS0.8、护甲8、移速2、射程1.2、暴击0；无技能无尸骸。",
+        "coefficient": 0,
+        "cooldown": 5,
+        "max_targets": 2,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "passive": {
+        "id": "U_CF_4_V",
+        "name": "产权交接",
+        "trigger": "CORPSE_CONSUME：6米内正式友军消耗尸骸",
+        "target": "6米内护盾最低3名正式友军",
+        "effect": "各获得80%攻击力BONE_ARMOR持续5秒；每目标本技能最多1份。",
+        "coefficient": 0.8,
+        "cooldown": 3,
+        "max_targets": 3,
+        "proc_policy": "仅文字指定事件触发；BASIC_HIT仅普攻有效命中。未明确允许的技能伤害默认不暴击、不生成BASIC_HIT/DIRECT_CRIT；其他有效事件可触发，但同一事件ID每技能仅结算一次。所有衍生事件保留cause_chain_id；同一因果链不得重复触发同一单位实例的同一效果ID。护盾到期不发SHIELD_BREAK，临时兵到期不发ALLY_KO，战外抽兵与管理献祭不发战斗事件。"
+      },
+      "needs": [
+        "尸骸",
+        "临时兵空位",
+        "正式前排"
+      ],
+      "provides": [
+        "SUMMON",
+        "CORPSE_CONSUME",
+        "SHIELD_GAIN"
+      ],
+      "weakness": "很慢且占据临时兵名额，快节奏单体敌人会限制收益。",
+      "visual": "棺盖镌刻本项目永不交活人",
+      "scope": "Expansion",
+      "basic_damage_type": "PHY"
+    }
+  ],
+  "specializations": [
+    {
+      "id": "SP_SK_1_A",
+      "unit_id": "U_SK_1",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "代班骨盾",
+      "effect": "主技护盾改给2米内生命比例最低的正式友军；自己不再获得该护盾。",
+      "mechanical_change": "自保转为近邻保护",
+      "tradeoff": "自身失去主技护盾"
+    },
+    {
+      "id": "SP_SK_1_B",
+      "unit_id": "U_SK_1",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "自费骨刺",
+      "effect": "被动伤害提高为110%攻击力；主技护盾比例降至8%。",
+      "mechanical_change": "提高破盾输出",
+      "tradeoff": "降低自保"
+    },
+    {
+      "id": "SP_SK_2A_A",
+      "unit_id": "U_SK_2A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "集体投诉",
+      "effect": "主技嘲讽目标上限增加至4，持续仍2秒；主技护盾降至12%最大生命。",
+      "mechanical_change": "扩大仇恨覆盖",
+      "tradeoff": "单体承伤余量下降"
+    },
+    {
+      "id": "SP_SK_2A_B",
+      "unit_id": "U_SK_2A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "独家保险",
+      "effect": "主技只嘲讽1名敌人，但护盾升为26%最大生命。",
+      "mechanical_change": "强化单目标承伤",
+      "tradeoff": "失去群体牵制"
+    },
+    {
+      "id": "SP_SK_2B_A",
+      "unit_id": "U_SK_2B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "累进税制",
+      "effect": "主技EXPOSED本技能层数上限增至5，附加伤害降为50%攻击力。",
+      "mechanical_change": "持续破甲",
+      "tradeoff": "直接爆发降低"
+    },
+    {
+      "id": "SP_SK_2B_B",
+      "unit_id": "U_SK_2B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "退税窗口",
+      "effect": "被动护盾提高为110%攻击力，冷却增至4秒。",
+      "mechanical_change": "低频大护盾",
+      "tradeoff": "保护触发频率下降"
+    },
+    {
+      "id": "SP_SK_3A_A",
+      "unit_id": "U_SK_3A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "集中稽核",
+      "effect": "主技只保护1名正式友军，护盾提高为260%攻击力。",
+      "mechanical_change": "集中保核心",
+      "tradeoff": "失去群体覆盖"
+    },
+    {
+      "id": "SP_SK_3A_B",
+      "unit_id": "U_SK_3A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "连带追责",
+      "effect": "被动伤害改为对目标周围2米最多3敌各60%攻击力；冷却增至2.5秒。",
+      "mechanical_change": "破盾范围输出",
+      "tradeoff": "单点输出与频率下降"
+    },
+    {
+      "id": "SP_SK_3B_A",
+      "unit_id": "U_SK_3B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "无差别执行",
+      "effect": "主技无需EXPOSED即可追加真实伤害，但物理倍率降至120%。",
+      "mechanical_change": "减少前置条件",
+      "tradeoff": "爆发上限降低"
+    },
+    {
+      "id": "SP_SK_3B_B",
+      "unit_id": "U_SK_3B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "集体查封",
+      "effect": "被动扩为自身加3名友军，每份护盾降为55%攻击力。",
+      "mechanical_change": "分散保护",
+      "tradeoff": "核心护盾变薄"
+    },
+    {
+      "id": "SP_SK_4_A",
+      "unit_id": "U_SK_4",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "全民保险",
+      "effect": "主技目标上限增至6，护盾比例降为12%；被动伤害降为70%。",
+      "mechanical_change": "全队防护用途",
+      "tradeoff": "牺牲进攻收益"
+    },
+    {
+      "id": "SP_SK_4_B",
+      "unit_id": "U_SK_4",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "资产清算",
+      "effect": "被动物理伤害升至170%；主技目标上限降至2。",
+      "mechanical_change": "破盾进攻用途",
+      "tradeoff": "覆盖减少"
+    },
+    {
+      "id": "SP_ZM_1_A",
+      "unit_id": "U_ZM_1",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "续杯毒气",
+      "effect": "主技每次改施加2层POISON，持续降为4秒，本技能层数上限仍3。",
+      "mechanical_change": "更快积毒",
+      "tradeoff": "持续时间缩短"
+    },
+    {
+      "id": "SP_ZM_1_B",
+      "unit_id": "U_ZM_1",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "保养优先",
+      "effect": "被动转化比例升为60%，护盾上限升为15%最大生命；主技改为每第3次普攻触发。",
+      "mechanical_change": "强化自保",
+      "tradeoff": "上毒变慢"
+    },
+    {
+      "id": "SP_ZM_2A_A",
+      "unit_id": "U_ZM_2A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "定点通知",
+      "effect": "主技只作用于普攻目标，施加4层POISON持续7秒。",
+      "mechanical_change": "转单体毒",
+      "tradeoff": "失去主技群体覆盖"
+    },
+    {
+      "id": "SP_ZM_2A_B",
+      "unit_id": "U_ZM_2A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "全民接收",
+      "effect": "被动传播目标增至2；传播冷却增至3秒。",
+      "mechanical_change": "扩大覆盖",
+      "tradeoff": "传播频率下降"
+    },
+    {
+      "id": "SP_ZM_2B_A",
+      "unit_id": "U_ZM_2B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "重症专窗",
+      "effect": "主技只治疗1名友军，治疗倍率提高为240%。",
+      "mechanical_change": "集中救援",
+      "tradeoff": "失去双目标治疗"
+    },
+    {
+      "id": "SP_ZM_2B_B",
+      "unit_id": "U_ZM_2B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "传染式关怀",
+      "effect": "被动改给目标周围2米最多3敌各1层毒；主技治疗倍率降为75%。",
+      "mechanical_change": "提高毒覆盖",
+      "tradeoff": "治疗变弱"
+    },
+    {
+      "id": "SP_ZM_3A_A",
+      "unit_id": "U_ZM_3A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "固定发言",
+      "effect": "主技范围增至4米、目标上限6；自身移动速度降低25%。",
+      "mechanical_change": "扩大阵地控制",
+      "tradeoff": "回场更慢"
+    },
+    {
+      "id": "SP_ZM_3A_B",
+      "unit_id": "U_ZM_3A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "小范围沟通",
+      "effect": "主技目标上限降至2，每目标施加4层POISON，持续仍6秒。",
+      "mechanical_change": "集中积毒",
+      "tradeoff": "覆盖减少"
+    },
+    {
+      "id": "SP_ZM_3B_A",
+      "unit_id": "U_ZM_3B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "保留尾款",
+      "effect": "主技最多消耗1层POISON，每层追加倍率改为80%。",
+      "mechanical_change": "保留持续毒",
+      "tradeoff": "爆发总上限降低"
+    },
+    {
+      "id": "SP_ZM_3B_B",
+      "unit_id": "U_ZM_3B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "集中清算",
+      "effect": "主技最多消耗5层POISON，冷却增至5秒。",
+      "mechanical_change": "扩大兑现峰值",
+      "tradeoff": "争抢更多毒层且启动慢"
+    },
+    {
+      "id": "SP_ZM_4_A",
+      "unit_id": "U_ZM_4",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "安宁病房",
+      "effect": "主技治疗提高为160%攻击力；主技毒层降至1层。",
+      "mechanical_change": "偏重续航用途",
+      "tradeoff": "毒伤启动慢"
+    },
+    {
+      "id": "SP_ZM_4_B",
+      "unit_id": "U_ZM_4",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "开放病房",
+      "effect": "主技敌人上限增至5、每敌3层毒；友军治疗上限降至1名。",
+      "mechanical_change": "偏重瘟疫用途",
+      "tradeoff": "群体续航下降"
+    },
+    {
+      "id": "SP_HR_1_A",
+      "unit_id": "U_HR_1",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "加急件",
+      "effect": "主技冷却降为3秒、每第2次普攻触发；路径伤害降为55%攻击力。",
+      "mechanical_change": "更频繁位移",
+      "tradeoff": "单次伤害降低"
+    },
+    {
+      "id": "SP_HR_1_B",
+      "unit_id": "U_HR_1",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "重货专送",
+      "effect": "主技路径伤害升为130%攻击力，位移上限降至4米。",
+      "mechanical_change": "冲刺伤害提高",
+      "tradeoff": "绕侧距离减少"
+    },
+    {
+      "id": "SP_HR_2A_A",
+      "unit_id": "U_HR_2A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "单件派送",
+      "effect": "主技路径目标上限降至1，倍率升至240%。",
+      "mechanical_change": "单体突击",
+      "tradeoff": "失去穿阵清群"
+    },
+    {
+      "id": "SP_HR_2A_B",
+      "unit_id": "U_HR_2A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "沿街派送",
+      "effect": "主技路径目标上限升至5，倍率降至85%。",
+      "mechanical_change": "清理成排敌人",
+      "tradeoff": "单点爆发下降"
+    },
+    {
+      "id": "SP_HR_2B_A",
+      "unit_id": "U_HR_2B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "保温箱",
+      "effect": "主技治疗降为90%攻击力，并给予目标70%攻击力BONE_ARMOR持续4秒。",
+      "mechanical_change": "治疗兼护盾",
+      "tradeoff": "即时回血降低"
+    },
+    {
+      "id": "SP_HR_2B_B",
+      "unit_id": "U_HR_2B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "两站联送",
+      "effect": "抵达后额外治疗2米内另一伤员，两个目标各恢复80%攻击力。",
+      "mechanical_change": "双目标补给",
+      "tradeoff": "单体急救下降"
+    },
+    {
+      "id": "SP_HR_3A_A",
+      "unit_id": "U_HR_3A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "原地取证",
+      "effect": "主技取消推开，路径伤害提高为150%攻击力。",
+      "mechanical_change": "维持敌人位置",
+      "tradeoff": "失去位移控制"
+    },
+    {
+      "id": "SP_HR_3A_B",
+      "unit_id": "U_HR_3A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "群体追尾",
+      "effect": "主技路径目标上限升至6，但伤害降为80%攻击力。",
+      "mechanical_change": "扩大穿阵范围",
+      "tradeoff": "单次输出下降"
+    },
+    {
+      "id": "SP_HR_3B_A",
+      "unit_id": "U_HR_3B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "直达快线",
+      "effect": "主技只治疗被选友军，治疗倍率升至260%。",
+      "mechanical_change": "核心远程急救",
+      "tradeoff": "失去群疗"
+    },
+    {
+      "id": "SP_HR_3B_B",
+      "unit_id": "U_HR_3B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "末班接驳",
+      "effect": "被动目标上限升至6，持续降至2秒；主技冷却增至6秒。",
+      "mechanical_change": "短时全队加速",
+      "tradeoff": "群疗频率降低"
+    },
+    {
+      "id": "SP_HR_4_A",
+      "unit_id": "U_HR_4",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "收尸专线",
+      "effect": "主技倍率升至200%，被动只作用于自身。",
+      "mechanical_change": "突击用途",
+      "tradeoff": "失去队友补给"
+    },
+    {
+      "id": "SP_HR_4_B",
+      "unit_id": "U_HR_4",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "互助班车",
+      "effect": "主技倍率降至90%，被动目标上限增至5，治疗与护盾各提高至110%攻击力。",
+      "mechanical_change": "移动支援用途",
+      "tradeoff": "冲锋输出降低"
+    },
+    {
+      "id": "SP_HD_1_A",
+      "unit_id": "U_HD_1",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "熟练工",
+      "effect": "主技改为3次35%攻击力物理伤害；被动治疗降为4%最大生命。",
+      "mechanical_change": "增加技能命中次数",
+      "tradeoff": "回血减少且技能不计普攻"
+    },
+    {
+      "id": "SP_HD_1_B",
+      "unit_id": "U_HD_1",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "工伤保险",
+      "effect": "被动治疗提高至10%最大生命；主技触发改每第5次普攻。",
+      "mechanical_change": "提高收割续航",
+      "tradeoff": "输出启动更慢"
+    },
+    {
+      "id": "SP_HD_2A_A",
+      "unit_id": "U_HD_2A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "人手充足",
+      "effect": "主技每次召唤2只骨指，单施法者上限仍3；每只骨指HP降至22、ATK降至4。",
+      "mechanical_change": "更快补充手群",
+      "tradeoff": "单体召唤质量降低"
+    },
+    {
+      "id": "SP_HD_2A_B",
+      "unit_id": "U_HD_2A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "资深员工",
+      "effect": "主技骨指HP升至50、ATK升至8；单施法者上限降至2。",
+      "mechanical_change": "强少数召唤",
+      "tradeoff": "事件数量下降"
+    },
+    {
+      "id": "SP_HD_2B_A",
+      "unit_id": "U_HD_2B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "防水接头",
+      "effect": "主技WET持续提高为8秒；主技伤害降为50%攻击力。",
+      "mechanical_change": "稳定湿润覆盖",
+      "tradeoff": "直接输出下降"
+    },
+    {
+      "id": "SP_HD_2B_B",
+      "unit_id": "U_HD_2B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "多口插排",
+      "effect": "被动目标上限升至2，每目标伤害降为40%攻击力。",
+      "mechanical_change": "扩大传导",
+      "tradeoff": "单点补伤下降"
+    },
+    {
+      "id": "SP_HD_3A_A",
+      "unit_id": "U_HD_3A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "减少手续",
+      "effect": "主技不再消耗尸骸，固定召唤1只；主技冷却降为2.5秒。",
+      "mechanical_change": "去掉尸骸需求",
+      "tradeoff": "失去双召唤爆发"
+    },
+    {
+      "id": "SP_HD_3A_B",
+      "unit_id": "U_HD_3A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "精简编制",
+      "effect": "临时骨指HP升至65、ATK升至11；单施法者骨指上限降为2。",
+      "mechanical_change": "精锐手群",
+      "tradeoff": "触发数量减少"
+    },
+    {
+      "id": "SP_HD_3B_A",
+      "unit_id": "U_HD_3B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "提前结款",
+      "effect": "主技强化阈值由30%生命提高到45%，强化倍率降为145%。；保留定时切后排与短时暴击加成。",
+      "mechanical_change": "扩大收割窗口",
+      "tradeoff": "斩杀峰值降低"
+    },
+    {
+      "id": "SP_HD_3B_B",
+      "unit_id": "U_HD_3B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "追索利息",
+      "effect": "被动回血提高为120%攻击力；主技常规倍率降至80%、强化倍率降至140%。；保留定时切后排与短时暴击加成。",
+      "mechanical_change": "近战续航",
+      "tradeoff": "爆发下降"
+    },
+    {
+      "id": "SP_HD_4_A",
+      "unit_id": "U_HD_4",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "常务委员会",
+      "effect": "骨掌HP升为90、ATK升为16，单施法者上限降为2。",
+      "mechanical_change": "精锐随从用途",
+      "tradeoff": "召唤次数与倒地事件减少"
+    },
+    {
+      "id": "SP_HD_4_B",
+      "unit_id": "U_HD_4",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "临时委员会",
+      "effect": "主技每次召唤3只，单施法者上限升为6；骨掌HP降为35、ATK降为7。",
+      "mechanical_change": "消耗手群用途",
+      "tradeoff": "占满队伍临时名额且惧AOE"
+    },
+    {
+      "id": "SP_BL_1_A",
+      "unit_id": "U_BL_1",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "重点慰问",
+      "effect": "主技治疗倍率升至210%，冷却增至3秒。",
+      "mechanical_change": "提高单次治疗",
+      "tradeoff": "治疗节奏变慢"
+    },
+    {
+      "id": "SP_BL_1_B",
+      "unit_id": "U_BL_1",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "平分附件",
+      "effect": "被动护盾改给治疗目标旁2米内另一名正式友军，倍率升为实际治疗量50%。",
+      "mechanical_change": "双目标保护",
+      "tradeoff": "原治疗目标不再获盾"
+    },
+    {
+      "id": "SP_BL_2A_A",
+      "unit_id": "U_BL_2A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "集中修复",
+      "effect": "主技只治疗1人，倍率升至280%。",
+      "mechanical_change": "单体抢救",
+      "tradeoff": "失去群体治疗"
+    },
+    {
+      "id": "SP_BL_2A_B",
+      "unit_id": "U_BL_2A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "普惠修复",
+      "effect": "主技目标上限增至5，倍率降为65%；被动持续降为2秒。",
+      "mechanical_change": "扩大受益数量",
+      "tradeoff": "单目标回复降低"
+    },
+    {
+      "id": "SP_BL_2B_A",
+      "unit_id": "U_BL_2B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "点名冷静",
+      "effect": "主技只命中1敌，施加CHILL 2层，伤害降为50%攻击力。",
+      "mechanical_change": "加速单点冻结",
+      "tradeoff": "范围与伤害下降"
+    },
+    {
+      "id": "SP_BL_2B_B",
+      "unit_id": "U_BL_2B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "广播冷静",
+      "effect": "主技目标上限增至4，冷却升至4秒。",
+      "mechanical_change": "扩大控场覆盖",
+      "tradeoff": "控制间隔变长"
+    },
+    {
+      "id": "SP_BL_3A_A",
+      "unit_id": "U_BL_3A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "独奏返工",
+      "effect": "主技只作用于1人，治疗提高为240%攻击力并给予HASTE 2层持续4秒。",
+      "mechanical_change": "支援单核心",
+      "tradeoff": "失去群体节奏"
+    },
+    {
+      "id": "SP_BL_3A_B",
+      "unit_id": "U_BL_3A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "合奏返工",
+      "effect": "主技目标上限增至6，治疗降为65%攻击力；HASTE持续降为3秒。",
+      "mechanical_change": "全队推进触发频率",
+      "tradeoff": "单兵回复降低"
+    },
+    {
+      "id": "SP_BL_3B_A",
+      "unit_id": "U_BL_3B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "专线电报",
+      "effect": "主技只命中1敌，倍率提高至240%攻击力。",
+      "mechanical_change": "单点法术爆发",
+      "tradeoff": "失去群伤"
+    },
+    {
+      "id": "SP_BL_3B_B",
+      "unit_id": "U_BL_3B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "公共电网",
+      "effect": "主技目标上限升至5，每目标倍率降为70%。",
+      "mechanical_change": "扩大电联动覆盖",
+      "tradeoff": "单体伤害下降"
+    },
+    {
+      "id": "SP_BL_4_A",
+      "unit_id": "U_BL_4",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "康复分公司",
+      "effect": "主技治疗升至160%攻击力，被动不再造成伤害但保留标记。",
+      "mechanical_change": "治疗用途",
+      "tradeoff": "削减倒地输出"
+    },
+    {
+      "id": "SP_BL_4_B",
+      "unit_id": "U_BL_4",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "追悼分公司",
+      "effect": "被动法术倍率升至150%，主技治疗目标上限降至2。",
+      "mechanical_change": "倒地联动用途",
+      "tradeoff": "群体治疗下降"
+    },
+    {
+      "id": "SP_CF_1_A",
+      "unit_id": "U_CF_1",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "加厚棺板",
+      "effect": "主技护盾升至22%最大生命，移动速度降低15%。",
+      "mechanical_change": "强化站桩承伤",
+      "tradeoff": "回场更慢"
+    },
+    {
+      "id": "SP_CF_1_B",
+      "unit_id": "U_CF_1",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "快速周转",
+      "effect": "被动冷却降至3秒，治疗降为7%最大生命。",
+      "mechanical_change": "更频繁尸骸事件",
+      "tradeoff": "单位尸骸回血效率下降"
+    },
+    {
+      "id": "SP_CF_2A_A",
+      "unit_id": "U_CF_2A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "单间升级",
+      "effect": "棺仆HP升至110、ATK升至12，单施法者上限降至1。",
+      "mechanical_change": "精锐随从",
+      "tradeoff": "牺牲数量与倒地频率"
+    },
+    {
+      "id": "SP_CF_2A_B",
+      "unit_id": "U_CF_2A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "隔断出租",
+      "effect": "每次召唤2只棺仆，HP降至40、ATK降至5；单施法者上限仍2。",
+      "mechanical_change": "快速填满前线",
+      "tradeoff": "单体质量下降"
+    },
+    {
+      "id": "SP_CF_2B_A",
+      "unit_id": "U_CF_2B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "定向焚单",
+      "effect": "主技只命中1敌，初始倍率提高至190%，BURN仍为1份，持续延长至8秒。",
+      "mechanical_change": "单体燃烧",
+      "tradeoff": "失去群伤"
+    },
+    {
+      "id": "SP_CF_2B_B",
+      "unit_id": "U_CF_2B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "公开焚单",
+      "effect": "主技范围增至3米、最多5敌，初始倍率降至55%。",
+      "mechanical_change": "扩大火域",
+      "tradeoff": "单点伤害下降"
+    },
+    {
+      "id": "SP_CF_3A_A",
+      "unit_id": "U_CF_3A",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "独户坚守",
+      "effect": "主技只嘲讽1敌，护盾提高至35%最大生命。",
+      "mechanical_change": "单体首领承伤",
+      "tradeoff": "失去群体牵制"
+    },
+    {
+      "id": "SP_CF_3A_B",
+      "unit_id": "U_CF_3A",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "邻里互助",
+      "effect": "主技护盾改为自身12%最大生命，并给予3米内2正式友军各100%攻击力护盾。",
+      "mechanical_change": "扩大保护范围",
+      "tradeoff": "自身耐压下降"
+    },
+    {
+      "id": "SP_CF_3B_A",
+      "unit_id": "U_CF_3B",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "无痕处理",
+      "effect": "主技不再消耗尸骸，固定130%攻击力；被动不再触发。",
+      "mechanical_change": "去掉资源依赖",
+      "tradeoff": "失去尸骸事件与标记"
+    },
+    {
+      "id": "SP_CF_3B_B",
+      "unit_id": "U_CF_3B",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "专项处理",
+      "effect": "主技目标上限降为1，无尸骸倍率180%、消耗尸骸倍率300%。",
+      "mechanical_change": "单体法术兑现",
+      "tradeoff": "失去范围输出"
+    },
+    {
+      "id": "SP_CF_4_A",
+      "unit_id": "U_CF_4",
+      "unlock_level": 4,
+      "choice": "A",
+      "name": "精品公墓",
+      "effect": "主技固定召唤1只且不消耗尸骸；棺卫HP升至150、ATK升至20，单施法者上限降为2。",
+      "mechanical_change": "精锐棺阵用途",
+      "tradeoff": "失去自身额外尸骸消费与双召唤"
+    },
+    {
+      "id": "SP_CF_4_B",
+      "unit_id": "U_CF_4",
+      "unlock_level": 4,
+      "choice": "B",
+      "name": "公益骨灰堂",
+      "effect": "主技基础棺卫HP降至65、ATK降至8；消耗尸骸的额外棺卫数改为2，单施法者上限升至5，需先有3个空余名额才消耗尸骸。",
+      "mechanical_change": "数量与尸骸用途",
+      "tradeoff": "占用更多临时名额且单兵脆弱"
+    }
+  ],
+  "synergies": [
+    {
+      "id": "SY01",
+      "name": "碎盾工伤险",
+      "unit_ids": [
+        "U_SK_1",
+        "U_BL_1",
+        "U_SK_3A"
+      ],
+      "optional_relic_tags": [
+        "SHIELD_GAIN",
+        "SHIELD_BREAK",
+        "EFFECTIVE_HEAL"
+      ],
+      "event_chain": "骨牌盾手/骨阵审计长产生护盾→敌伤耗尽护盾→散架意见与破盾追责造成伤害；骨铃实习生治疗并补盾，启动下一轮独立因果链。",
+      "cost_or_limit": "护盾到期不算破裂；不同反击有独立冷却，正式军队上限6。",
+      "counter": "远程拉扯、范围法术持续压力",
+      "alternatives": [
+        "护盾可来自SK_2A、SK_4、CF_1",
+        "治疗可换ZM_2B、BL_2A。"
+      ]
+    },
+    {
+      "id": "SY02",
+      "name": "治疗也能传染",
+      "unit_ids": [
+        "U_ZM_1",
+        "U_ZM_2B",
+        "U_BL_2A"
+      ],
+      "optional_relic_tags": [
+        "EFFECTIVE_HEAL",
+        "POISON"
+      ],
+      "event_chain": "护理员/骨铃治疗→腐尸获得护盾；护理员治疗同时给附近敌人上毒→持续削弱敌阵。",
+      "cost_or_limit": "治疗必须实际恢复HP；毒有层数与时长上限。",
+      "counter": "爆发击杀、毒抗、打散站位",
+      "alternatives": [
+        "治疗源可换BL_1、BL_3A或HR_2B；毒前排可换ZM_2A。"
+      ]
+    },
+    {
+      "id": "SY03",
+      "name": "毒账分期结清",
+      "unit_ids": [
+        "U_ZM_2A",
+        "U_ZM_3B"
+      ],
+      "optional_relic_tags": [
+        "POISON_TICK",
+        "POISON"
+      ],
+      "event_chain": "播报员多目标上毒→毒账核销师消费有限毒层形成爆发→剩余毒跳继续支持其治疗。",
+      "cost_or_limit": "消费毒层降低后续POISON_TICK次数；两种收益不能同时按未消费毒计算。",
+      "counter": "毒抗、单体速杀、远程分散",
+      "alternatives": [
+        "毒源可换ZM_1、ZM_3A、ZM_4；以持续毒为主时可不带核销师。"
+      ]
+    },
+    {
+      "id": "SY04",
+      "name": "拒收重甲快递",
+      "unit_ids": [
+        "U_HR_2A",
+        "U_SK_2B",
+        "U_SK_3B"
+      ],
+      "optional_relic_tags": [
+        "DASH_END",
+        "EXPOSED"
+      ],
+      "event_chain": "亡马冲刺终点施加EXPOSED，弩吏继续破甲→执行官对EXPOSED目标追加真实伤害。",
+      "cost_or_limit": "追击目标与射击目标可能不同；执行官必须实际命中带破甲目标。",
+      "counter": "后排分散、范围护盾、控制亡马",
+      "alternatives": [
+        "EXPOSED可由HR_1或HR_3A提供；输出可由高等级物理正式单位承担。"
+      ]
+    },
+    {
+      "id": "SY05",
+      "name": "冷链冷静期",
+      "unit_ids": [
+        "U_HR_2B",
+        "U_BL_2B"
+      ],
+      "optional_relic_tags": [
+        "CHILL",
+        "DASH_END"
+      ],
+      "event_chain": "灵柩马回场治疗并给附近敌人CHILL→骨铃追加CHILL达到冻结阈值→获得治疗与重新站位时间。",
+      "cost_or_limit": "CHILL全局3层转冻结，抗再次冻结窗口不能绕过。",
+      "counter": "控制抗性、大敌、断开两者覆盖",
+      "alternatives": [
+        "CHILL来源可由冷系遗物替代；机动治疗可换HR_3B。"
+      ]
+    },
+    {
+      "id": "SY06",
+      "name": "湿手接电网",
+      "unit_ids": [
+        "U_HD_2B",
+        "U_BL_3B"
+      ],
+      "optional_relic_tags": [
+        "WET",
+        "SHOCK",
+        "DIRECT_CRIT"
+      ],
+      "event_chain": "接线手施加WET→悼词官法术命中湿目标施加SHOCK→后续符合条件的直接命中消费电收益。",
+      "cost_or_limit": "技能法术不冒充BASIC_HIT或DIRECT_CRIT；SHOCK服从状态冷却与层数上限。",
+      "counter": "分散阵型、魔法防护、快速击杀接线手",
+      "alternatives": [
+        "WET可由BL_3B自身暴击提供，也可由WET遗物提供；接线手可以独立工作。"
+      ]
+    },
+    {
+      "id": "SY07",
+      "name": "人手越少越忙",
+      "unit_ids": [
+        "U_HD_2A",
+        "U_BL_4"
+      ],
+      "optional_relic_tags": [
+        "SUMMON",
+        "ALLY_KO"
+      ],
+      "event_chain": "包工头召唤临时骨指→骨指被敌伤击倒→包工头加速补员，哀乐总裁给倒地点周围敌人标记与伤害。",
+      "cost_or_limit": "全队临时兵12；到期消失不触发倒地；骨指不留尸骸。",
+      "counter": "清除本体、沉默或远程分离、单体低频攻击",
+      "alternatives": [
+        "召唤可换CF_2A、HD_4；倒地支援可来自ALLY_KO遗物。"
+      ]
+    },
+    {
+      "id": "SY08",
+      "name": "一尸多份账",
+      "unit_ids": [
+        "U_CF_3B",
+        "U_HD_3A",
+        "U_CF_4"
+      ],
+      "optional_relic_tags": [
+        "CORPSE_CONSUME",
+        "SUMMON"
+      ],
+      "event_chain": "任一尸骸消费者消耗唯一尸骸→地产王给附近正式军队护盾；手群或法术获得对应收益。",
+      "cost_or_limit": "每具尸骸仅消费1次；同时触发按稳定单位ID顺序抢占，不可一尸多用；三单位会彼此争尸。",
+      "counter": "无小怪首领、远程拉扯、尸骸不足",
+      "alternatives": [
+        "消费者保留其中1种即可，搭配ZM_3A或CF_1也能产生尸骸事件。"
+      ]
+    },
+    {
+      "id": "SY09",
+      "name": "跑步报销",
+      "unit_ids": [
+        "U_HR_3B",
+        "U_SK_2B",
+        "U_HD_1"
+      ],
+      "optional_relic_tags": [
+        "HASTE",
+        "DASH_END"
+      ],
+      "event_chain": "驿站长冲刺回场→为友军提供HASTE→弩吏更快积普攻破甲，断手更快产生普攻计数技能。",
+      "cost_or_limit": "加速仅影响APS，不缩短技能明确冷却；位移占用驿站长攻击时间。",
+      "counter": "范围压制、击退拆阵",
+      "alternatives": [
+        "HASTE源可换BL_2A、BL_3A；普攻触发受益者可换SK_1、ZM_2A。"
+      ]
+    },
+    {
+      "id": "SY10",
+      "name": "护盾换治疗",
+      "unit_ids": [
+        "U_SK_3A",
+        "U_BL_3A"
+      ],
+      "optional_relic_tags": [
+        "SHIELD_GAIN",
+        "SHIELD_BREAK",
+        "EFFECTIVE_HEAL"
+      ],
+      "event_chain": "审计长群体护盾→敌人耗尽某正式友军护盾→追悼指挥修复该友军→新普攻链再提供护盾。",
+      "cost_or_limit": "同一因果链同效果仅一次；纯治疗补出的护盾不能瞬间自破。",
+      "counter": "伤害过高瞬间穿盾击杀、分散拉扯",
+      "alternatives": [
+        "护盾源可换SK_4、CF_3A；治疗源可换普通治疗者但失去精准破盾触发。"
+      ]
+    },
+    {
+      "id": "SY11",
+      "name": "标记尾款",
+      "unit_ids": [
+        "U_HD_3B",
+        "U_BL_4",
+        "U_CF_3B"
+      ],
+      "optional_relic_tags": [
+        "SOUL_BRAND",
+        "DIRECT_CRIT"
+      ],
+      "event_chain": "骨铃倒地回响或棺术尸骸消费产生SOUL_BRAND→断腕直接暴击标记目标获得治疗，完成残血收割。",
+      "cost_or_limit": "标记本身不保证击杀，断腕需贴身且真正暴击。",
+      "counter": "高护甲、拉扯、不可接近后排",
+      "alternatives": [
+        "断腕自身可以上标记；外部标记可由SOUL_BRAND遗物替代，因此不是必绑3人。"
+      ]
+    },
+    {
+      "id": "SY12",
+      "name": "火场请勿乱推",
+      "unit_ids": [
+        "U_CF_2B",
+        "U_HR_3A"
+      ],
+      "optional_relic_tags": [
+        "BURN",
+        "DASH_END"
+      ],
+      "event_chain": "守住敌人密度使火棺多目标燃烧；骨骑长选原地取证专精时冲刺不推散敌群，保持范围收益。",
+      "cost_or_limit": "未选原地取证时推开可能形成负协同；不能把所有位移都当正收益。",
+      "counter": "分散敌群、火抗、远程拉扯",
+      "alternatives": [
+        "不用骨骑长也可由SK_2A、CF_3A嘲讽留住敌人。"
+      ]
+    },
+    {
+      "id": "SY13",
+      "name": "工会集体保险",
+      "unit_ids": [
+        "U_SK_4",
+        "U_ZM_4",
+        "U_BL_2A"
+      ],
+      "optional_relic_tags": [
+        "SHIELD_BREAK",
+        "EFFECTIVE_HEAL"
+      ],
+      "event_chain": "骨王给正式兵护盾→伤害耗盾与损HP→骨铃/腐尸群疗→院长将实际治疗转范围伤害，骨王破盾再补伤。",
+      "cost_or_limit": "本构筑受益于真实受伤但不能靠自损无限触发；治疗转伤有1秒冷却和倍率上限。",
+      "counter": "高爆发优先杀治疗、长射程拆阵",
+      "alternatives": [
+        "骨王可换SK_3A，治疗可换ZM_2B或HR_3B。"
+      ]
+    },
+    {
+      "id": "SY14",
+      "name": "棺材不空岗",
+      "unit_ids": [
+        "U_CF_2A",
+        "U_CF_3A",
+        "U_BL_1"
+      ],
+      "optional_relic_tags": [
+        "SUMMON",
+        "TAUNT",
+        "SHIELD_GAIN"
+      ],
+      "event_chain": "棺仆补前线→钉子户嘲讽留住敌人→骨铃维持正式棺体，临时棺仆倒地给其召唤者护盾。",
+      "cost_or_limit": "骨铃主技不治疗临时棺仆；不能把正式治疗写成所有友军治疗。",
+      "counter": "穿透后排、魔法爆发、临时兵AOE",
+      "alternatives": [
+        "临时兵可换HD_2A；正式承伤可换SK_2A。"
+      ]
+    },
+    {
+      "id": "SY15",
+      "name": "死人也要交接",
+      "unit_ids": [
+        "U_ZM_3A",
+        "U_CF_2B",
+        "U_CF_4"
+      ],
+      "optional_relic_tags": [
+        "CORPSE_CONSUME",
+        "HASTE"
+      ],
+      "event_chain": "腐尸消费原生敌尸进行修复→火棺获得HASTE、地产王给正式友军盾→火棺更快积累普攻触发燃烧。",
+      "cost_or_limit": "同一具尸骸只消费一次但可通知不同效果；HASTE不缩短明确冷却。",
+      "counter": "尸骸稀缺首领、消耗者离开5至6米覆盖",
+      "alternatives": [
+        "消费者可换CF_1、HD_3A，尸骸收益可由遗物替代。"
+      ]
+    },
+    {
+      "id": "SY16",
+      "name": "少而精的末班车",
+      "unit_ids": [
+        "U_HR_4",
+        "U_SK_3B",
+        "U_BL_3A"
+      ],
+      "optional_relic_tags": [
+        "DASH_END",
+        "EFFECTIVE_HEAL",
+        "HASTE"
+      ],
+      "event_chain": "灵车冲刺吸引侧翼并回场支援→追悼指挥用独奏支援执行官→执行官普攻与破甲后爆发完成击杀。",
+      "cost_or_limit": "仅6正式上阵；需选择灵车支援专精和执行官射界，不保证所有波次都最佳。",
+      "counter": "多路快怪、孤立核心、移动封锁",
+      "alternatives": [
+        "灵车可换HR_2B或HR_3B，单核心支援可服务HD_3B而非执行官。"
+      ]
+    }
+  ]
+}

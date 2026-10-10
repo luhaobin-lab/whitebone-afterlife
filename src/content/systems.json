@@ -1,0 +1,1303 @@
+{
+  "relics": [
+    {
+      "id": "R_M01",
+      "name": "棺盖止轮钮",
+      "type": "machine",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "选定1列原样保留，重抽另2列的6格。重抽按本节点当前20份权重独立取样。",
+      "limits": "每盘1次；消耗1骨头和1次盘面干预；本盘所有来源干预总计不超过2次。",
+      "tags": [
+        "control",
+        "lock",
+        "reroll"
+      ],
+      "tradeoff": "能保留好列，但会失去其余两列已有的潜在线。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M02",
+      "name": "指骨换位钳",
+      "type": "machine",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "交换2个上下或左右相邻格的符号。",
+      "limits": "每盘1次；消耗1骨头和1次干预；不能交换同一格；总干预上限2。",
+      "tags": [
+        "control",
+        "swap",
+        "precision"
+      ],
+      "tradeoff": "只能交换相邻格，无法凭空增加目标符号。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M03",
+      "name": "蜡封抄骨纸",
+      "type": "machine",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "选择1格，将其符号复制到上下或左右相邻的1格，覆盖后者。",
+      "limits": "每盘1次；消耗2骨头和1次干预；只复制符号，不复制兵、奖励或经验；总干预上限2。",
+      "tags": [
+        "control",
+        "copy",
+        "narrow"
+      ],
+      "tradeoff": "更适合追同族多线，但会破坏被覆盖家族的机会。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M04",
+      "name": "墓匠转轴",
+      "type": "machine",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "选1列，将其中3格循环上移或下移1格。",
+      "limits": "每盘1次；消耗1次干预，不另收骨头；总干预上限2。",
+      "tags": [
+        "control",
+        "rotate",
+        "alignment"
+      ],
+      "tradeoff": "该列纵向是否中奖不变，主要影响横线和斜线。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M05",
+      "name": "点骨刻针",
+      "type": "machine",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "选1格按当前轮盘权重重新抽样。",
+      "limits": "每盘1次；消耗1骨头和1次干预；可能抽回原符号；总干预上限2。",
+      "tags": [
+        "control",
+        "reroll",
+        "precision"
+      ],
+      "tradeoff": "适合修一格，不能保证修成功。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M06",
+      "name": "双棺翻面镜",
+      "type": "machine",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "交换任意2整列的位置，保留各列内部次序。",
+      "limits": "每盘1次；消耗1次干预，不另收骨头；总干预上限2。",
+      "tags": [
+        "control",
+        "swap",
+        "alignment"
+      ],
+      "tradeoff": "不改变各横排和竖列的组成，只能改变斜线关系。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M07",
+      "name": "四角骨盘",
+      "type": "machine",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 2,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "将4个角格的符号顺时针或逆时针循环移动1位。",
+      "limits": "每盘1次；消耗1次干预，不另收骨头；总干预上限2。",
+      "tags": [
+        "control",
+        "rotate",
+        "alignment"
+      ],
+      "tradeoff": "可以同时改动多条线，也可能拆掉已有中奖。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M08",
+      "name": "中心摄魂针",
+      "type": "machine",
+      "rarity": "legendary",
+      "price": 32,
+      "unlock_act": 1,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "从当前盘面选1个非中央格，把其符号复制到中央格。",
+      "limits": "每盘1次；消耗2骨头和1次干预；不能选择盘面不存在的符号；总干预上限2。",
+      "tags": [
+        "control",
+        "copy",
+        "narrow"
+      ],
+      "tradeoff": "中央格连接4条线，收益高但仍需要其他位置配合。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M09",
+      "name": "横棺复摇柄",
+      "type": "machine",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "盘面生成后、确认结算前主动使用",
+      "effect": "选1横排，按当前权重重新抽取该排3格。",
+      "limits": "每盘1次；消耗1骨头和1次干预；总干预上限2。",
+      "tags": [
+        "control",
+        "reroll",
+        "alignment"
+      ],
+      "tradeoff": "比单格重抽影响更大，也更可能失去原有结果。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M10",
+      "name": "守财骨匣",
+      "type": "machine",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "支付本波第1次付费追加拉杆费用前",
+      "effect": "本波第1次付费追加费用减少1骨头。",
+      "limits": "每波1次；最终实付至少1骨头；不影响免费抽、干预费和后续追加价格。",
+      "tags": [
+        "economy",
+        "discount"
+      ],
+      "tradeoff": "占用机器槽以节省资源，不增加改盘能力。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M11",
+      "name": "空棺收据",
+      "type": "machine",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "付费盘面最终确认且0条中奖线时",
+      "effect": "返还本盘拉杆费中的1骨头。",
+      "limits": "每波最多触发1次；返还不超过实付拉杆费减1；不返还道具或干预费；免费盘不触发。",
+      "tags": [
+        "economy",
+        "miss",
+        "insurance"
+      ],
+      "tradeoff": "只减轻空盘损失，不能让失败变为正收益。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M12",
+      "name": "双族整队号",
+      "type": "machine",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "最终盘面至少有2个不同家族中奖并完成收兵时",
+      "effect": "本波所有永久上阵兵在开战后的前6秒获得15%移动速度加成。",
+      "limits": "每波1次；重复触发不叠加、不刷新；不作用于临时召唤物；不改变出兵数量。",
+      "tags": [
+        "wide",
+        "mobility",
+        "settlement"
+      ],
+      "tradeoff": "偏好多家族单线结果，不帮助追求同族高阶。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M13",
+      "name": "窄门王冠",
+      "type": "machine",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "某家族最终中奖线数至少2且召出的兵本波上阵时",
+      "effect": "该新兵开战时获得15点骨甲，持续6秒。",
+      "limits": "每名本波新兵最多1次；每波最多2名；服从骨甲总上限；被献祭的兵不把此效果转移给接受者。",
+      "tags": [
+        "narrow",
+        "shield",
+        "settlement"
+      ],
+      "tradeoff": "保护抽到的高阶新兵，不能当作可以继承的永久属性。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M14",
+      "name": "白骨教鞭",
+      "type": "machine",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "最终收兵结果的出生阶级为R1时",
+      "effect": "该兵出生训练等级改为Lv2。",
+      "limits": "只作用于最终仍为R1的兵；不改变出生阶级或分支；累计经验写为Lv2门槛6，不重复再加6。",
+      "tags": [
+        "training",
+        "wide",
+        "settlement"
+      ],
+      "tradeoff": "提高低阶兵的即战力和培养价值，但占用一个概率控制槽。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M15",
+      "name": "空盘魂帷",
+      "type": "machine",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "任意盘面最终确认且没有家族中奖时",
+      "effect": "命匣获得本波专用的6点防线屏障，用于吸收敌人突破伤害。",
+      "limits": "每波仅1份，不叠加；波后消失；不能恢复命匣生命；不是单位骨甲，不发SHIELD_GAIN或SHIELD_BREAK。",
+      "tags": [
+        "miss",
+        "insurance",
+        "defense"
+      ],
+      "tradeoff": "能缓冲坏运气，但没有新增士兵或永久成长。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M16",
+      "name": "三线战铭",
+      "type": "machine",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 2,
+      "trigger": "某家族最终至少3条线且新兵本波上阵时",
+      "effect": "该新兵本波造成的伤害提高15%。",
+      "limits": "每名新兵最多1次；不永久保存，不通过献祭转移；不改变召唤物伤害；伤害倍率不另发伤害事件。",
+      "tags": [
+        "narrow",
+        "damage",
+        "settlement"
+      ],
+      "tradeoff": "奖励高阶结果的当波投入，留在后备时本波收益消失。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M17",
+      "name": "偏心配重",
+      "type": "machine",
+      "rarity": "legendary",
+      "price": 32,
+      "unlock_act": 2,
+      "trigger": "进入节点并锁定机器配置时",
+      "effect": "本节点临时把1个已装家族的2份权重转给另1个已装家族，节点结束还原。",
+      "limits": "每节点1次；只能在首次拉杆前设置；操作后仍是4家族、各2至10份、总20份；与永久改造分开记录。",
+      "tags": [
+        "probability",
+        "narrow",
+        "planning"
+      ],
+      "tradeoff": "可以偏向当前构筑，但会减少另一家族的供应；节点内不能来回改。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_M18",
+      "name": "第二钱斗",
+      "type": "machine",
+      "rarity": "legendary",
+      "price": 32,
+      "unlock_act": 2,
+      "trigger": "节点开始时确定本波付费追加上限",
+      "effect": "本波允许第4和第5次付费追加，基础价格分别为11和14骨头。",
+      "limits": "所有来源合计最多5次付费追加；不赠送免费次数，不改变前3次3/5/8价格；未用额度波后作废。",
+      "tags": [
+        "economy",
+        "extra_pull",
+        "gamble"
+      ],
+      "tradeoff": "可以追大奖，但会挤占后续商店与命匣恢复预算。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A01",
+      "name": "碎骨祭杯",
+      "type": "army",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "ALLY_KO",
+      "effect": "每累计2次友军被击倒，为场上生命比例最低的存活友军恢复4生命。",
+      "limits": "每波最多6次；全队共享1秒冷却；0有效治疗不发EFFECTIVE_HEAL；管理献祭不计数。",
+      "tags": [
+        "death",
+        "heal",
+        "summon"
+      ],
+      "tradeoff": "需要发生战损，治疗量有限，不能代替前排。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A02",
+      "name": "死者摇铃",
+      "type": "army",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "SUMMON",
+      "effect": "新出现的临时召唤物获得1层HASTE，持续4秒。",
+      "limits": "每波最多6个召唤物；全队共享0.5秒冷却；不作用于老虎机收兵或波后复起。",
+      "tags": [
+        "summon",
+        "haste"
+      ],
+      "tradeoff": "没有战内召唤者时完全无效。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A03",
+      "name": "墓园口粮",
+      "type": "army",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "CORPSE_CONSUME",
+      "effect": "成功消耗尸骸的我方单位恢复6生命。",
+      "limits": "每单位1秒冷却，全队每波最多8次；法师或无单位来源的消耗不触发；同一尸骸只能消耗一次。",
+      "tags": [
+        "corpse",
+        "heal"
+      ],
+      "tradeoff": "会让尸骸消耗者争夺资源，无法凭空生成尸骸。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A04",
+      "name": "瘟疫银针",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "BASIC_HIT",
+      "effect": "每个我方永久单位每第3次普通命中给目标附加1层POISON，持续4秒。",
+      "limits": "同单位1秒冷却、每波最多8次；能力伤害和连锁伤害不累计；只有实际命中才累计。",
+      "tags": [
+        "poison",
+        "hit"
+      ],
+      "tradeoff": "偏好高频普攻，对短战斗或低攻频单位收益低。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A05",
+      "name": "感染骨笛",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "POISON_TICK",
+      "effect": "敌人每承受3次毒跳，向3米内最近1名未中毒敌人传播1层POISON，持续4秒。",
+      "limits": "全队每波最多4次，共享2秒冷却；每目标按毒跳事件计数而非毒层；没有合法目标则不传播。",
+      "tags": [
+        "poison",
+        "spread"
+      ],
+      "tradeoff": "密集敌群更有效，对单个首领没有传播收益。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A06",
+      "name": "腐血绷带",
+      "type": "army",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "EFFECTIVE_HEAL",
+      "effect": "受治疗友军移除1层POISON。",
+      "limits": "同单位2秒冷却、每波最多6次；需实际恢复生命；不消除其他状态。",
+      "tags": [
+        "heal",
+        "cleanse"
+      ],
+      "tradeoff": "对不施毒的敌人没有额外收益。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A07",
+      "name": "骨甲缝线",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "SHIELD_BREAK",
+      "effect": "骨甲被伤害击碎的友军恢复4生命。",
+      "limits": "同单位3秒冷却、每波最多3次；自然到期、被替换或波后清理不触发。",
+      "tags": [
+        "shield",
+        "heal"
+      ],
+      "tradeoff": "必须真的被打破骨甲，不能靠反复刷新骨甲刷治疗。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A08",
+      "name": "石墓铭牌",
+      "type": "army",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "计算友军新获得骨甲的请求量时",
+      "effect": "新获得的骨甲数值提高20%。",
+      "limits": "在SHIELD_GAIN发出之前计算一次；仍服从总骨甲不超过最大HP60%；不延长持续时间。",
+      "tags": [
+        "shield",
+        "defense"
+      ],
+      "tradeoff": "高骨甲队更有效；碰到上限的部分浪费。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A09",
+      "name": "苦修齿冠",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "DAMAGE_TAKEN",
+      "effect": "每个永久兵每累计受到10点敌方造成的实际生命伤害，获得3点骨甲，持续4秒。",
+      "limits": "同单位2秒冷却、每波最多4次；只计损HP，不计纯骨甲吸收、自伤、友伤或命匣损伤。",
+      "tags": [
+        "hurt",
+        "shield"
+      ],
+      "tradeoff": "需要先承受真实战损，不能抵挡第一次爆发。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A10",
+      "name": "锈链套环",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "TAUNT",
+      "effect": "被我方嘲讽的敌人同时获得5层EXPOSED，持续4秒（每层减3护甲，共减15）。",
+      "limits": "同一敌人4秒冷却、每波最多3次；刷新同一次嘲讽不再次触发。",
+      "tags": [
+        "taunt",
+        "physical",
+        "armor_break"
+      ],
+      "tradeoff": "帮助物理队，对以法术为主的队伍价值较低。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A11",
+      "name": "冥骑马刺",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "DASH_END",
+      "effect": "我方冲锋结束时，对落点1.5米内敌人造成6点物理伤害。",
+      "limits": "同单位3秒冷却、每波最多4次；不是普通攻击、不能暴击；正常走路或被击退不触发。",
+      "tags": [
+        "dash",
+        "physical",
+        "area"
+      ],
+      "tradeoff": "需要真正能冲锋的兵种，密集或背后目标更有价值。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A12",
+      "name": "掘墓靴",
+      "type": "army",
+      "rarity": "common",
+      "price": 12,
+      "unlock_act": 1,
+      "trigger": "ENEMY_KO",
+      "effect": "击倒敌人的我方单位获得1层HASTE，持续4秒。",
+      "limits": "同单位2秒冷却、每波最多4次；无单位归属的击杀不触发；同源仅刷新。",
+      "tags": [
+        "kill",
+        "haste",
+        "carry"
+      ],
+      "tradeoff": "偏向负责终结敌人的单位，首领孤身战收益较低。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A13",
+      "name": "断指暴轮",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "DIRECT_CRIT",
+      "effect": "造成直接暴击的我方永久兵恢复自身最大生命的2%。",
+      "limits": "同单位0.75秒冷却、每波最多6次；满血无EFFECTIVE_HEAL；毒跳、反伤、能力伤害默认不暴击。",
+      "tags": [
+        "crit",
+        "heal",
+        "carry"
+      ],
+      "tradeoff": "需要暴击与受伤同时存在，纯后排满血时收益低。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A14",
+      "name": "送葬棺钉",
+      "type": "army",
+      "rarity": "legendary",
+      "price": 32,
+      "unlock_act": 1,
+      "trigger": "ALLY_KO",
+      "effect": "友军被击倒时，对其1.8米内敌人造成4点法术伤害。",
+      "limits": "全队共享1秒冷却、每波最多6次；临时召唤物可触发，管理献祭不触发；不额外制造尸骸。",
+      "tags": [
+        "death",
+        "magic",
+        "area"
+      ],
+      "tradeoff": "能利用牺牲，但无法通过无限召唤无限爆炸。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A15",
+      "name": "守灵烛盏",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 1,
+      "trigger": "EFFECTIVE_HEAL",
+      "effect": "每个我方单位每累计3次有效治疗，获得4点骨甲，持续4秒。",
+      "limits": "同单位2秒冷却、每波最多4次；按治疗事件次数而非治疗量计数；0回复不计；全体治疗对每个受疗者各计一次。",
+      "tags": [
+        "heal",
+        "shield"
+      ],
+      "tradeoff": "偏好多次小治疗；有内部冷却和次数限制，不能形成无限互触发。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A16",
+      "name": "冻墓银铃",
+      "type": "army",
+      "rarity": "rare",
+      "price": 20,
+      "unlock_act": 2,
+      "trigger": "BASIC_HIT",
+      "effect": "普通攻击命中带CHILL或FROZEN的敌人时，附加2点法术伤害。",
+      "limits": "同攻击者0.5秒冷却、每波最多10次；附伤不生成BASIC_HIT或DIRECT_CRIT。",
+      "tags": [
+        "chill",
+        "hit",
+        "magic"
+      ],
+      "tradeoff": "依赖稳定的寒冷来源，单独持有不提高伤害。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A17",
+      "name": "雷髓导管",
+      "type": "army",
+      "rarity": "legendary",
+      "price": 32,
+      "unlock_act": 2,
+      "trigger": "BASIC_HIT",
+      "effect": "普通攻击命中WET敌人后，给该目标施加1层SHOCK。",
+      "limits": "同攻击者3秒冷却、每波最多3次；先结算这次命中已有的状态，再施加SHOCK，本次新SHOCK不被同一击消费。",
+      "tags": [
+        "wet",
+        "shock",
+        "hit"
+      ],
+      "tradeoff": "需要潮湿来源和后续攻击接续，不能自我无限传导。",
+      "scope": "Core"
+    },
+    {
+      "id": "R_A18",
+      "name": "末日军旗",
+      "type": "army",
+      "rarity": "legendary",
+      "price": 32,
+      "unlock_act": 1,
+      "trigger": "ALLY_KO，且被击倒者是永久上阵兵",
+      "effect": "在被击倒者原地召出1个临时亡灵残影，持续6秒。HP为原兵本波最大HP的20%，攻击为原兵当前攻击的30%；固定攻速0.8次/秒、移速2米/秒、射程1.2米、物理普攻；护甲、暴击率、格挡率、再生、吸血均为0，暴击倍率1.5。",
+      "limits": "每波最多2次；残影只普通攻击、不复制技能、不留尸骸；计入临时召唤上限12并发SUMMON；已达上限时本次机会仍消耗，不排队补发。",
+      "tags": [
+        "death",
+        "summon",
+        "defense"
+      ],
+      "tradeoff": "能补短暂空缺，但不能替代永久前排或复制高阶整套技能。",
+      "scope": "Core"
+    }
+  ],
+  "items": [
+    {
+      "id": "I01",
+      "name": "限定家族引魂券",
+      "price": 6,
+      "use_phase": "拉杆前",
+      "effect": "选择当前轮盘的1个家族；本盘最终该族若恰好1条中奖线，其唯一结果由R1提升为R2 Lv1；0线无效，2线及以上按原规则。",
+      "limit": "每盘最多1张，拉杆开始即消耗且不退；不创造中奖线、不保证出现、不增加兵数；与R_M14按最终R判断。",
+      "tags": [
+        "slot",
+        "family",
+        "rank"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I02",
+      "name": "上油骨脂",
+      "price": 3,
+      "use_phase": "支付付费追加拉杆时",
+      "effect": "这次付费追加的基础拉杆费减少2骨头。",
+      "limit": "不用于免费抽或干预费；最终实付至少1骨头；同次费用最多1份道具折扣。",
+      "tags": [
+        "slot",
+        "economy",
+        "discount"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I03",
+      "name": "棺钉固定夹",
+      "price": 4,
+      "use_phase": "盘面干预阶段",
+      "effect": "固定1列，按当前权重重新抽另2列的6格。",
+      "limit": "每盘最多1份；消耗1次干预，总干预上限2；操作开始扣道具；不会返还原盘已放弃的结果。",
+      "tags": [
+        "slot",
+        "control",
+        "lock"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I04",
+      "name": "指节换位针",
+      "price": 4,
+      "use_phase": "盘面干预阶段",
+      "effect": "交换2个上下或左右相邻格的符号。",
+      "limit": "每盘最多1份；消耗1次干预，总干预上限2；操作开始扣道具。",
+      "tags": [
+        "slot",
+        "control",
+        "swap"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I05",
+      "name": "骨灰复写纸",
+      "price": 6,
+      "use_phase": "盘面干预阶段",
+      "effect": "把选定1格的符号复制到相邻1格。",
+      "limit": "每盘最多1份；消耗1次干预，总干预上限2；只改符号，不复制任何既有奖励。",
+      "tags": [
+        "slot",
+        "control",
+        "copy"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I06",
+      "name": "训练骨髓",
+      "price": 5,
+      "use_phase": "波间整军",
+      "effect": "给1名永久兵增加6训练经验。",
+      "limit": "不改变出生阶级R；Lv8单位不能使用；若越过Lv4且未选专精，待玩家做一次2选1；本波对同一兵最多1份。",
+      "tags": [
+        "training",
+        "army"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I07",
+      "name": "骨甲药膏",
+      "price": 4,
+      "use_phase": "波间整军",
+      "effect": "选1名上阵兵，该兵本波开战时获得12骨甲，持续6秒。",
+      "limit": "同一目标本波最多1份；服从骨甲上限；换下阵容则效果保留到本波结束但不会转给他人。",
+      "tags": [
+        "shield",
+        "defense"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I08",
+      "name": "防腐药剂",
+      "price": 3,
+      "use_phase": "波间整军",
+      "effect": "选1名上阵兵，本波其首次生命低于50%时获得REGEN，持续5秒。",
+      "limit": "同一目标本波最多1份；只触发1次，未触发则波后作废；不改变出生阶级或最大生命。",
+      "tags": [
+        "heal",
+        "regen"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I09",
+      "name": "尸油毒瓶",
+      "price": 4,
+      "use_phase": "波间整军",
+      "effect": "选1名上阵兵，本波前3次普通命中各附加1层POISON，持续4秒。",
+      "limit": "同一目标本波最多1份；只计BASIC_HIT，能力附伤不消耗也不触发；剩余次数波后消失。",
+      "tags": [
+        "poison",
+        "hit"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I10",
+      "name": "备用命匣碎片",
+      "price": 8,
+      "use_phase": "波间整军",
+      "effect": "恢复命匣4生命，最多恢复到60。",
+      "limit": "每节点最多1份；满生命时禁用；不发EFFECTIVE_HEAL，不作用于军队单位。",
+      "tags": [
+        "phylactery",
+        "recovery"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "I11",
+      "name": "急救骨胶",
+      "price": 6,
+      "use_phase": "战斗中，Expansion",
+      "effect": "选择1名存活永久兵，立即恢复10生命。",
+      "limit": "本波全部战内道具总计最多1次，并占每波最多2次道具使用中的1次；不能复活；按实际回复发EFFECTIVE_HEAL。",
+      "tags": [
+        "heal",
+        "combat_item"
+      ],
+      "scope": "Expansion"
+    },
+    {
+      "id": "I12",
+      "name": "亵渎骨爆瓶",
+      "price": 8,
+      "use_phase": "战斗中，Expansion",
+      "effect": "选择1名永久兵，消耗其2米内最近1具尸骸，在尸骸处对2米内敌人造成14法术伤害。",
+      "limit": "本波全部战内道具总计最多1次，并占每波最多2次使用中的1次；无合法尸骸时不可启动；消耗者为所选兵，发1次CORPSE_CONSUME；附伤不暴击。",
+      "tags": [
+        "corpse",
+        "magic",
+        "combat_item"
+      ],
+      "scope": "Expansion"
+    }
+  ],
+  "statuses": [
+    {
+      "id": "POISON",
+      "name": "尸毒",
+      "type": "debuff",
+      "stack_rule": "每层每秒造成0.6法术伤害；来源技能可覆盖持续时间，重复施加刷新该来源层的时间；同一目标每秒只发1次POISON_TICK。 聚合事件保留各施加者的实际伤害贡献列表，以支持只监听自身尸毒的技能。",
+      "duration": "默认8秒；技能明确写明时以技能为准",
+      "cap": "总计20层；各来源仍服从其技能局部上限",
+      "expire": "来源层到期移除；单位被击倒或波结束时清除",
+      "interaction": "毒伤不暴击、不发BASIC_HIT；可被净化；由毒造成的实际生命伤害仍发DAMAGE_TAKEN，击倒仍发对应KO事件。"
+    },
+    {
+      "id": "CHILL",
+      "name": "寒滞",
+      "type": "debuff",
+      "stack_rule": "每层使移动与攻击速度降低8%；重复施加刷新时间；达到3层时清空寒滞并转为FROZEN。",
+      "duration": "默认4秒",
+      "cap": "3层；冻结抗性期间最多积累2层",
+      "expire": "到期、转为FROZEN或波结束时清除",
+      "interaction": "对WET目标施加寒滞时消耗WET并额外增加1层寒滞；冻结结束后3秒不能再次冻结。"
+    },
+    {
+      "id": "FROZEN",
+      "name": "封骨冻结",
+      "type": "control",
+      "stack_rule": "不可叠层；被冻结时不能移动、普攻或施放主动技能；持续伤害、治疗与既有投射物继续结算。",
+      "duration": "默认1.5秒；后续施加不延长本次冻结",
+      "cap": "1层，结束后3秒冻结抗性",
+      "expire": "时间到、被击倒或波结束时清除",
+      "interaction": "不阻断死亡、召唤、毒跳等事件结算；抗性由同一状态系统记录，不另产生可叠加增益。"
+    },
+    {
+      "id": "BURN",
+      "name": "尸焰",
+      "type": "debuff",
+      "stack_rule": "每秒造成2法术伤害；同源只刷新，异源不叠伤，保留剩余总伤害较高的一份。",
+      "duration": "默认4秒",
+      "cap": "1份",
+      "expire": "到期、遇WET、被击倒或波结束时清除",
+      "interaction": "给燃烧目标施加WET会熄灭尸焰并保留WET；给WET目标施加BURN会消耗WET，本次BURN不附着；严格按事件先后顺序执行。"
+    },
+    {
+      "id": "WET",
+      "name": "冥水浸湿",
+      "type": "debuff",
+      "stack_rule": "自身不造成伤害或减防，重复施加只刷新时间。",
+      "duration": "默认5秒",
+      "cap": "1层",
+      "expire": "到期、被CHILL或BURN消耗、被击倒或波结束时清除",
+      "interaction": "与CHILL、BURN、SHOCK交互；只有明确需要潮湿的效果受益，不默认提高所有法术伤害。"
+    },
+    {
+      "id": "SHOCK",
+      "name": "骨髓电荷",
+      "type": "debuff",
+      "stack_rule": "目标下一次受到非持续、非反应的直接伤害时消耗电荷，额外承受6法术伤害；重复施加只刷新。",
+      "duration": "默认5秒",
+      "cap": "1层",
+      "expire": "触发消耗、到期、被击倒或波结束时清除",
+      "interaction": "若触发时带WET，最近1名3米内敌人另受4法术伤害；这次传导不附加电荷、不再传导、不生成普攻或暴击事件。"
+    },
+    {
+      "id": "BONE_ARMOR",
+      "name": "骨甲",
+      "type": "shield",
+      "stack_rule": "多来源数值可相加；每份保留各自到期时间；新增的实际骨甲量大于0才发SHIELD_GAIN。",
+      "duration": "来源定义，默认6秒",
+      "cap": "当前总量不超过目标最大生命60%；溢出丢弃",
+      "expire": "受伤耗尽、各来源到期、被击倒或波结束时清除",
+      "interaction": "物理先计算护甲再扣骨甲；法术和真实伤害不经护甲但先扣骨甲；仅被伤害打至总骨甲0时发SHIELD_BREAK，自然到期不发；骨甲不同于护甲数值。"
+    },
+    {
+      "id": "EXPOSED",
+      "name": "破甲",
+      "type": "debuff",
+      "stack_rule": "每层护甲减少3；各技能可明确规定同源叠层与局部上限，未说明时同源刷新而不叠层；不同来源合计受全局上限限制。",
+      "duration": "默认4秒",
+      "cap": "全局最多5层，总减甲最多15；有效护甲最低0",
+      "expire": "到期、被击倒或波结束时清除",
+      "interaction": "只影响物理伤害；不减少骨甲值，不提高法术或真实伤害；技能局部上限可为2、3或5层但不能突破全局5层。"
+    },
+    {
+      "id": "HASTE",
+      "name": "骸骨疾行",
+      "type": "buff",
+      "stack_rule": "每层攻击速度提高15%；默认同源刷新、异源可叠；具体技能明确允许同源叠层或一次施加2层时按技能执行，仍服从全局2层上限。",
+      "duration": "默认4秒",
+      "cap": "全局2层、合计30%攻击速度；技能局部上限可更低；最终攻击速度仍服从全局攻击速度上限",
+      "expire": "来源到期、被击倒或波结束时清除",
+      "interaction": "只改变普攻间隔，不缩短技能冷却或增加SUMMON次数；移动加速由明确写明的效果处理。"
+    },
+    {
+      "id": "REGEN",
+      "name": "腐肉再生",
+      "type": "buff",
+      "stack_rule": "每秒回复最大生命2%；重复施加保留剩余总回复较高的一份，不叠次数。",
+      "duration": "默认5秒",
+      "cap": "1份",
+      "expire": "到期、被击倒或波结束时清除",
+      "interaction": "每次实际回复HP大于0发EFFECTIVE_HEAL；满血跳过事件；不会复活或修复命匣。"
+    },
+    {
+      "id": "TAUNTED",
+      "name": "受挑衅",
+      "type": "control",
+      "stack_rule": "目标优先攻击嘲讽来源；新来源替换旧来源，同来源只刷新。",
+      "duration": "默认2秒",
+      "cap": "1份；连续受嘲讽最多4秒后有2秒抗性",
+      "expire": "来源死亡或离场、到期、被击倒或波结束时清除",
+      "interaction": "只在新施加或来源实际改变时发TAUNT；不强制瞬移、穿越碰撞或增加攻击距离。"
+    },
+    {
+      "id": "SOUL_BRAND",
+      "name": "灵魂烙印",
+      "type": "debuff",
+      "stack_rule": "目标承受印记者造成的直接伤害提高10%；目标最多保留1个印记者，新来源替换旧来源。",
+      "duration": "默认6秒",
+      "cap": "1层",
+      "expire": "被技能明确消耗、到期、目标被击倒或波结束时清除",
+      "interaction": "不加成毒跳、反伤、继发传导；技能可查询印记者归属；印记者死亡不立即解除，但不能把烙印变成永久资源。"
+    }
+  ],
+  "risks": [
+    {
+      "id": "RK01",
+      "scenario": "初始盘先发兵，再干预同一盘重复领原有中奖，复制符号进一步复制奖励。",
+      "severity": "critical",
+      "mitigation": "盘面只有生成、干预、最终确认、领取四阶段；同盘只有一个settlement_id；全部操作完成后结算一次。",
+      "test": "对同一盘依次重摇、交换、重复点击收兵并重载页面；永久兵、经验、道具次数只能按一次最终结果改变。"
+    },
+    {
+      "id": "RK02",
+      "scenario": "玩家装上免费操作遗物无限重摇，或者费用不足时启动再取消来探结果。",
+      "severity": "critical",
+      "mitigation": "所有遗物与道具共享每盘2次干预；每件还有局部次数；先检查合法性，操作开始原子扣费和次数，随后随机取样，不支持退单。",
+      "test": "组合M01/M05/I03/I04尝试第3次干预、负余额操作、取消和重载；第3次被拒，已开始操作不可恢复资源或改随机结果。"
+    },
+    {
+      "id": "RK03",
+      "scenario": "限定家族引魂券把0线变兵，或把2线R2继续升为R3。",
+      "severity": "high",
+      "mitigation": "只对所选族最终恰好1线应用R1到R2替换；0线与2线以上无额外效果，已消耗道具不返还。",
+      "test": "分别输入目标族0/1/2/3条线与其他族1条线，核对数量、R阶和无效消耗；I01+M14不能额外赠送训练经验。"
+    },
+    {
+      "id": "RK04",
+      "scenario": "临时权重和永久改造叠加后出现1族独占、负权重或总和超过20。",
+      "severity": "critical",
+      "mitigation": "每次修改作为完整事务校验4个不同家族、每家族2至10、总和20；换家族继承被替换槽的权重；M17临时增量单独保存和还原。",
+      "test": "遍历边界2/10、换种、进出节点、重载；任何时刻都满足约束，不因M17结束把永久改造回滚。"
+    },
+    {
+      "id": "RK05",
+      "scenario": "训练到Lv4或吸收高阶兵使R1升为R2，混淆出生阶级与训练。",
+      "severity": "critical",
+      "mitigation": "birth_rank创建后不可由经验修改；Lv4只选一次战斗专精；普通献祭只增加经验，公式为供体出生阶基础值2/5/12/25加floor(0.75×供体累计训练XP)，不传出生R。",
+      "test": "给R1喂满150累计经验、献祭R4给R1、使用I06越过Lv4；目标仍R1，仅等级/专精按规则变化。"
+    },
+    {
+      "id": "RK06",
+      "scenario": "高R Lv1大奖必须丢弃已养成的低R Lv8核心，或通过反复献祭把经验越转越多。",
+      "severity": "high",
+      "mitigation": "独立换壳操作只允许同族新高阶身体接收旧低阶核心；保留新身体职业和出生R，训练XP取两者max而非相加，达到Lv4按新职业重选专精；两兵合为一兵，不能再领取献祭XP。普通献祭另用统一公式。",
+      "test": "覆盖合法换壳、不同族、同阶、反向高阶喂低阶、换壳后重复献祭请求；换壳只产1名新身体职业的兵，XP=max，供体被删除，不同时发献祭XP。"
+    },
+    {
+      "id": "RK07",
+      "scenario": "战内召唤物被保存、售卖或献祭，制造无限永久兵、骨头和经验。",
+      "severity": "critical",
+      "mitigation": "永久兵与战内召唤物使用独立生命周期；临时对象不进入整军库存、不参与战外回收；波结束强制清除。",
+      "test": "临时召唤、残影、复活、战后保存/载入的全链路检查，永久兵数、骨头、经验不能因此上升。"
+    },
+    {
+      "id": "RK08",
+      "scenario": "尸骸与骨头货币共用对象，玩家拖延战斗反复复活刷钱。",
+      "severity": "critical",
+      "mitigation": "战场尸骸与骨头钱包分离；敌方战利品绑定节点预算与唯一敌人奖励ID；新召出的敌我单位都不新增战利品预算。",
+      "test": "保留最后一个敌人，循环召唤/击倒/消耗尸骸；骨头不增长，尸骸数量和寿命受限。"
+    },
+    {
+      "id": "RK09",
+      "scenario": "骨甲破裂触发治疗，治疗触发骨甲，再次触发同一链条直到锁死。",
+      "severity": "critical",
+      "mitigation": "同一因果链内同一来源效果最多响应一次；每件遗物的对象冷却和每波次数独立记录；0回复/0新增骨甲不发事件。",
+      "test": "A07+A08+A15与单位治疗/骨甲技能对单次来袭做逐事件日志；队列有限、次数正确，不出现无时间流逝的无限链。"
+    },
+    {
+      "id": "RK10",
+      "scenario": "闪电附伤、毒跳或反伤发BASIC_HIT/DIRECT_CRIT，触发无限追击与状态传播。",
+      "severity": "critical",
+      "mitigation": "只有基础攻击的实际命中发BASIC_HIT；能力、持续、反应伤害默认不暴击；继发效果带来源与反应标记，不回填原始普攻事件。",
+      "test": "A04+A16+A17配湿/冻/毒，检查每次普攻的事件图和计数；附伤不能递归生成普攻或再次传导。"
+    },
+    {
+      "id": "RK11",
+      "scenario": "正式军队波后复起导致任何损失都无关紧要，强队只选最高奖励路线。",
+      "severity": "high",
+      "mitigation": "命匣跨波和节点保留真实损耗；被突破才罚命匣，不按友军死亡收费；节点敌情与多波累计压力可预览。",
+      "test": "三套构筑面对同一分叉，记录命匣风险、金币与选择；若路线永远同一条，需要改敌方任务压力而非永久删兵。"
+    },
+    {
+      "id": "RK12",
+      "scenario": "候补满6时大奖消失、被自动喂错人，或同一盘多个家族的奖励超出库存而静默丢失。",
+      "severity": "high",
+      "mitigation": "最终结果进入独立、不能出战的待处理区，全部奖励可见；玩家完成上阵/替换/献祭后才能继续；不自动丢弃高R兵。",
+      "test": "上阵6后备6满员时分别领取1/2/3族奖励，检查任何兵都不丢失，完成处理后永久库存仍不超过12。"
+    },
+    {
+      "id": "RK13",
+      "scenario": "临时召唤达到12上限后排队，空位出现瞬间大量补发并绕过技能冷却。",
+      "severity": "high",
+      "mitigation": "上限在请求时判定；失败请求仍消耗其本次触发机会，不建立隐藏补发队列；实际成功创建才发SUMMON。",
+      "test": "压满12后触发A18与单位技能，清除1个单位；不得把旧失败请求集中补发。"
+    },
+    {
+      "id": "RK14",
+      "scenario": "每节点三波只是在反复整理同一支强军，第三波没有新判断。",
+      "severity": "high",
+      "mitigation": "同节点三波改变敌方组成或进攻方向/防线压力，并在波间预告；每波减少低价值拖拽，提供批量献祭但先预览。",
+      "test": "只测一个三波节点，预设高roll、两次空盘、分散协同三种序列；若第三波全部是相同单核加经验，应调整成长与波次敌情。"
+    },
+    {
+      "id": "RK15",
+      "scenario": "拿机器遗物改盘后换战斗遗物、军团仓库无限换装，让槽位限制失效。",
+      "severity": "high",
+      "mitigation": "机器与军团配置都在入节点时锁定；机器槽2/3/4按章首领解锁；軍团最多6件，替换仅节点外机会，旧件永久放弃且不退价。",
+      "test": "拉杆前后、波间、节点内商店外入口尝试换装；所有非法切换拒绝且日志保留锁定快照。"
+    },
+    {
+      "id": "RK16",
+      "scenario": "多种折扣和空盘返还使一次付费抽取净赚骨头。",
+      "severity": "critical",
+      "mitigation": "先计算基础价格3/5/8/11/14，汇总折扣后实付下限1；任何返还不超过本次实付减1；不返还干预或道具。",
+      "test": "穷举M10/M11/I02、免费盘、各追加次数及余额边界，保证任何单盘拉杆费净支出至少1或本就是基础免费盘。"
+    },
+    {
+      "id": "RK17",
+      "scenario": "骨甲被误当护甲，真实伤害和毒被重复减免，满血再生也触发治疗循环。",
+      "severity": "high",
+      "mitigation": "物理/法术/真实使用独立伤害类型；只有物理经护甲，三类随后扣骨甲；事件记录实际HP/骨甲变化；满血回复为0。",
+      "test": "同一攻击分别打无防御、15护甲、12骨甲与组合目标；核对公式、事件数量与满血REGEN零事件。"
+    },
+    {
+      "id": "RK18",
+      "scenario": "把7条中奖线写成有效等级，或按每条线发兵，破坏每族只1兵规则。",
+      "severity": "critical",
+      "mitigation": "先识别8条完整线，再按家族归组；使用固定映射1:R1Lv1、2:R2Lv1、3:R3Lv1、4:R4Lv1、5:R4Lv3、6:R4Lv5、8:R4Lv8；7视为逻辑错误。",
+      "test": "已静态穷举4符号9格共262144盘：每盘最多3族出兵，任何家族无7线，9同符号仅1族8线；实现仍需按固定映射验证9同符号只领1只R4Lv8。"
+    }
+  ],
+  "builds": [
+    {
+      "id": "B01",
+      "name": "骨潮轮回",
+      "families": [
+        "SK",
+        "BL",
+        "CF",
+        "HD"
+      ],
+      "core_events": [
+        "SUMMON",
+        "ALLY_KO",
+        "CORPSE_CONSUME",
+        "EFFECTIVE_HEAL"
+      ],
+      "priority_stats": [
+        "召唤技能冷却",
+        "前排存活时间",
+        "治疗量"
+      ],
+      "relic_tags": [
+        "summon",
+        "death",
+        "corpse",
+        "heal"
+      ],
+      "formation": "SK/CF在前，BL保持在后排保护区，HD提供后排持续命中；留出临时兵生成空位。",
+      "counters": "大范围持续清场、压缩召唤空间、直取后排的冲锋会削弱循环；临时兵上限不能用数量突破。",
+      "slot_plan": "建议试验权重SK8/BL6/CF4/HD2；先有召唤与支援再追同族高R，不能把每个召来的临时骷髅当成永久经验。"
+    },
+    {
+      "id": "B02",
+      "name": "瘟疫接力",
+      "families": [
+        "ZM",
+        "HD",
+        "SK",
+        "BL"
+      ],
+      "core_events": [
+        "BASIC_HIT",
+        "POISON_TICK",
+        "CORPSE_CONSUME",
+        "ENEMY_KO"
+      ],
+      "priority_stats": [
+        "有效普攻频率",
+        "前排生命",
+        "毒持续覆盖"
+      ],
+      "relic_tags": [
+        "poison",
+        "spread",
+        "hit",
+        "wide"
+      ],
+      "formation": "ZM与SK拖住正面，HD打持续命中，BL提供支援；尽量让传播目标处于3米内。",
+      "counters": "净化、少量高威胁单位、快速击杀后排和短战斗限制叠毒；需要基础输出应付未铺毒的开局。",
+      "slot_plan": "建议ZM7/HD5/SK4/BL4；先补齐施毒和生存，再抬ZM/HD同族多线概率；分散单线仍有阵容价值。"
+    },
+    {
+      "id": "B03",
+      "name": "墓墙反击",
+      "families": [
+        "CF",
+        "SK",
+        "BL",
+        "ZM"
+      ],
+      "core_events": [
+        "TAUNT",
+        "DAMAGE_TAKEN",
+        "SHIELD_GAIN",
+        "SHIELD_BREAK",
+        "EFFECTIVE_HEAL"
+      ],
+      "priority_stats": [
+        "最大生命",
+        "护甲",
+        "骨甲覆盖"
+      ],
+      "relic_tags": [
+        "taunt",
+        "shield",
+        "hurt",
+        "heal",
+        "armor_break"
+      ],
+      "formation": "CF和SK构成前排，BL放在骨甲与治疗覆盖范围内，ZM补持续伤害。",
+      "counters": "绕行直取命匣、法术穿过护甲优势、限制治疗与长时间消耗；骨甲并不免疫真实伤害。",
+      "slot_plan": "建议CF8/SK6/BL4/ZM2；保住两个前排位置，不把所有普通支援兵喂给唯一坦克。"
+    },
+    {
+      "id": "B04",
+      "name": "断手暴击链",
+      "families": [
+        "HD",
+        "SK",
+        "BL",
+        "HR"
+      ],
+      "core_events": [
+        "BASIC_HIT",
+        "DIRECT_CRIT",
+        "EFFECTIVE_HEAL",
+        "ENEMY_KO"
+      ],
+      "priority_stats": [
+        "暴击率",
+        "攻击速度",
+        "支援覆盖"
+      ],
+      "relic_tags": [
+        "crit",
+        "hit",
+        "heal",
+        "haste",
+        "carry"
+      ],
+      "formation": "SK保护HD，BL支援后排，HR处理侧翼；HD不要最先接敌。",
+      "counters": "高护甲正面、攻击频率压制、绕后击杀；只堆暴击而缺稳定命中会断链。",
+      "slot_plan": "建议HD8/SK5/BL5/HR2；机器保留HD关键格但不能忽略保护者；单线HD也可训练，不能XP升出生R。"
+    },
+    {
+      "id": "B05",
+      "name": "冥骑破阵",
+      "families": [
+        "HR",
+        "HD",
+        "SK",
+        "CF"
+      ],
+      "core_events": [
+        "DASH_END",
+        "TAUNT",
+        "BASIC_HIT",
+        "ENEMY_KO"
+      ],
+      "priority_stats": [
+        "冲锋可用频率",
+        "物理攻击",
+        "落点存活"
+      ],
+      "relic_tags": [
+        "dash",
+        "physical",
+        "mobility",
+        "armor_break"
+      ],
+      "formation": "CF/SK先接战，HR从可达通道冲后排，HD在侧后提供持续输出；不把冲锋当穿墙。",
+      "counters": "密集阻挡、控制冲锋、诱导冲入集火区；没有合法通道时需要普通输出兜底。",
+      "slot_plan": "建议HR8/HD4/SK4/CF4；优先补前排与骑兵各一，再追高R骑兵，避免全骑无人守命匣。"
+    },
+    {
+      "id": "B06",
+      "name": "冥水冰雷",
+      "families": [
+        "BL",
+        "HD",
+        "ZM",
+        "SK"
+      ],
+      "core_events": [
+        "BASIC_HIT",
+        "POISON_TICK",
+        "SHIELD_GAIN",
+        "ENEMY_KO"
+      ],
+      "priority_stats": [
+        "状态覆盖",
+        "普攻频率",
+        "前排拖延"
+      ],
+      "relic_tags": [
+        "wet",
+        "shock",
+        "chill",
+        "hit",
+        "magic"
+      ],
+      "formation": "SK/ZM承担正面，BL保持施法距离，HD负责及时消费电荷；不要让火源不断清掉自己的潮湿。",
+      "counters": "状态净化、分散站位、直接冲后排；冰雷需要来源与消费顺序，不能只看纸面状态种类。",
+      "slot_plan": "建议BL8/HD6/ZM4/SK2；需抽到具备相应状态的BL/HD路线，尚未成套时用护卫支撑，不能把所有BL出生形态视为同一种功能。"
+    },
+    {
+      "id": "B07",
+      "name": "献身爆葬",
+      "families": [
+        "SK",
+        "CF",
+        "BL",
+        "ZM"
+      ],
+      "core_events": [
+        "ALLY_KO",
+        "SUMMON",
+        "CORPSE_CONSUME",
+        "EFFECTIVE_HEAL"
+      ],
+      "priority_stats": [
+        "可重复召唤的频率",
+        "战场尸骸利用",
+        "真实前排存活"
+      ],
+      "relic_tags": [
+        "death",
+        "summon",
+        "corpse",
+        "area"
+      ],
+      "formation": "永久CF守住命匣，CF召出的临时棺仆在敌群附近承伤，BL留在安全处；死亡触发位置比死亡次数更重要。",
+      "counters": "远程拉扯、把召唤物杀在远离敌人的位置、提前杀掉召唤者；遗物每波次数用尽后必须仍能作战。",
+      "slot_plan": "建议SK6/CF6/BL4/ZM4；不需要把概率压成单族；管理献祭不触发战内爆葬。"
+    },
+    {
+      "id": "B08",
+      "name": "独骑护送",
+      "families": [
+        "HR",
+        "CF",
+        "BL",
+        "HD"
+      ],
+      "core_events": [
+        "DASH_END",
+        "SHIELD_GAIN",
+        "DIRECT_CRIT",
+        "EFFECTIVE_HEAL"
+      ],
+      "priority_stats": [
+        "核心训练等级",
+        "命匣防线稳定",
+        "高R核心获得率"
+      ],
+      "relic_tags": [
+        "carry",
+        "narrow",
+        "shield",
+        "heal",
+        "training"
+      ],
+      "formation": "CF固定守正面，BL为HR提供支援，HD补远程；核心冲出后仍需有人承担防线。",
+      "counters": "针对单体的长控制、核心与支援脱节、需要同时应付多个入口的波次；不能成为所有敌情下的唯一最优解。",
+      "slot_plan": "建议HR8/CF6/BL4/HD2；高R大奖是替换身体或独立上阵的对象；同族低R高等级旧核心可与新高R身体换壳，保留新职业和R、XP取max，不能反向喂高R把旧身体升阶。"
+    }
+  ]
+}

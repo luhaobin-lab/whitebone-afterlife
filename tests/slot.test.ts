@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {analyzeBoard,rollBoard,validateWeights,interventionBoard} from '../src/domain/slot';
+import type {FamilyId} from '../src/domain/types';
+import {Rng} from '../src/domain/random';
+const weights=[{family:'SK' as const,weight:5},{family:'ZM' as const,weight:5},{family:'HR' as const,weight:5},{family:'BL' as const,weight:5}];
+test('两横一竖同族仅出一名R3',()=>{const w=analyzeBoard(['SK','SK','SK','SK','SK','SK','ZM','SK','HR']);assert.equal(w.length,1);assert.equal(w[0].rank,3);assert.equal(w[0].lineCount,3);assert.equal(w[0].templateIds.length,2)});
+test('满盘仅一名R4 Lv8，不多送低阶',()=>{const w=analyzeBoard(Array(9).fill('CF'));assert.equal(w.length,1);assert.equal(w[0].rank,4);assert.equal(w[0].level,8);assert.equal(w[0].lineCount,8)});
+test('不同家族中奖分别合并、最多三族',()=>{const w=analyzeBoard(['SK','SK','SK','ZM','ZM','ZM','HR','HR','HR']);assert.equal(w.length,3);assert.deepEqual(w.map(x=>x.rank),[1,1,1])});
+test('随机数复现与权重边界',()=>{assert.ok(validateWeights(weights));assert.ok(!validateWeights([...weights.slice(0,3),{family:'SK',weight:5}]));assert.ok(!validateWeights([{family:'SK',weight:11},{family:'ZM',weight:3},{family:'HR',weight:3},{family:'BL',weight:3}]));assert.deepEqual(rollBoard(weights,new Rng(182)),rollBoard(weights,new Rng(182)))});
+test('锁列重摇只保留指定列',()=>{const b:FamilyId[]=['SK','SK','ZM','HR','ZM','BL','BL','HR','SK'];const r=interventionBoard(b,{kind:'lockColumn',index:1},weights,new Rng(9));for(const i of [1,4,7])assert.equal(r[i],b[i]);assert.deepEqual(b,['SK','SK','ZM','HR','ZM','BL','BL','HR','SK'])});
+test('交换、复制、循环四角精确处理索引',()=>{const b:FamilyId[]=['SK','ZM','HR','BL','SK','ZM','HR','BL','SK'];assert.deepEqual(interventionBoard(b,{kind:'swap',a:0,b:1},weights,new Rng(1)).slice(0,3),['ZM','SK','HR']);assert.equal(interventionBoard(b,{kind:'copy',a:0,b:1},weights,new Rng(1))[1],'SK');const c=interventionBoard(b,{kind:'rotateCorners'},weights,new Rng(1));assert.deepEqual([c[0],c[2],c[8],c[6]],['HR','SK','HR','SK'])});
+test('穷举4^9盘：概率、无七线、每族仅一个结果',()=>{const fs:FamilyId[]=['SK','ZM','HR','BL'];let hits=0,count=0;for(let n=0;n<262144;n++){let p=n;const b:FamilyId[]=[];for(let k=0;k<9;k++){b.push(fs[p%4]);p=Math.floor(p/4)}const w=analyzeBoard(b);hits+=Number(w.length>0);count+=w.length;assert.ok(w.length<=3);assert.equal(new Set(w.map(x=>x.family)).size,w.length);assert.ok(w.every(x=>x.lineCount!==7))}assert.equal(hits/262144,0.410125732421875);assert.equal(count/262144,0.42724609375)});

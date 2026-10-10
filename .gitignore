@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.DS_Store
+artifacts/
+outputs/
+releases/
+tests/render-evidence/
+progress.md
+src/render/progress.md
+GOAL.md
+LOOP.md
+docs/SLOTBOUND_INTERACTION_RESEARCH.md
+docs/MODULE_CONTRACT.md
+.env
+.env.*
+!.env.example
+*.log

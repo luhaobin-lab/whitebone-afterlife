@@ -1,0 +1,64 @@
+/** Full campaign through real UI controls. State reads guide decisions; no state writes, domain mutations or forced results. */
+import {chromium} from 'playwright';
+import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
+import * as R from '../src/domain/run';
+import {getUnit,getStats,getRelic,levelForXp} from '../src/content';
+import {analyzeBoard,interventionBoard,isAdjacent} from '../src/domain/slot';
+import type {SlotIntervention} from '../src/domain/slot';
+import {Rng} from '../src/domain/random';
+import type {UnitInstance,FamilyId} from '../src/domain/types';
+const args=process.argv.slice(2),arg=(k:string,d:string)=>args.includes(k)?args[args.indexOf(k)+1]:d;
+const starter=arg('--starter','plague') as R.StarterId,seed=arg('--seed','campaign-v1-001'),url=arg('--url','http://127.0.0.1:4173/?test'),out=arg('--out',`artifacts/ui/campaign-${starter}`),resume=arg('--resume','');mkdirSync(out,{recursive:true});
+const main:FamilyId=starter==='plague'?'ZM':starter==='cavalry'?'HR':'CF';
+const targetWeights:Record<string,number>=starter==='plague'?{ZM:10,BL:5,HD:3,SK:2}:starter==='cavalry'?{HR:9,HD:5,BL:4,SK:2}:{SK:6,CF:7,BL:5,HD:2};
+const browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:900}});page.setDefaultTimeout(5000);const errors:string[]=[],actions:object[]=[],waves:object[]=[];let shotNo=0;
+page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+const read=async()=>page.evaluate(()=>window.__whitebone!.getRun()!) as Promise<R.RunState>;
+const shot=async(name:string)=>{await page.screenshot({path:`${out}/${String(++shotNo).padStart(2,'0')}-${name}.png`});writeFileSync(`${out}/latest-save.json`,await page.evaluate(()=>localStorage.getItem('whitebone.save.v1')||''))};
+const click=async(action:string,attrs:Record<string,string|number>={})=>{const sel=`[data-action="${action}"]`+Object.entries(attrs).map(([k,v])=>`[data-${k}="${v}"]`).join('');await page.locator(sel).first().click();actions.push({action,...attrs})};
+const close=async()=>{if(await page.locator('#modal-layer.open').count())await click('close-modal')};
+const all=(r:R.RunState)=>[...r.army,...r.staging];
+const healer=(u:UnitInstance)=>/治疗|修复|补给|支援/.test(getUnit(u.templateId).role)&&getUnit(u.templateId).family!=='SK';
+const frontline=(u:UnitInstance)=>getStats(u).range<=3&&getStats(u).hp>=130;
+const score=(u:UnitInstance)=>{const s=getStats(u),d=getUnit(u.templateId);return d.rank*25+s.level*5+s.hp*.06+s.atk*s.aps*.5+(d.family===main?10:0)+(healer(u)?4:0)};
+const relicScore=(id:string)=>{const d=getRelic(id);const v:Record<string,number>={R_M01:6,R_M02:9,R_M03:12,R_M04:8,R_M05:8,R_M06:5,R_M07:5,R_M08:13,R_M09:7,R_M10:10,R_M11:5,R_M12:1,R_M13:2,R_M14:10,R_M15:3,R_M16:3,R_M17:12,R_M18:0};return d.type==='machine'?v[id]||0:6+d.tags.filter(t=>(starter==='plague'?['poison','heal','shield']:starter==='cavalry'?['dash','crit','physical','haste']:['summon','corpse','shield','heal']).includes(t)).length*4};
+async function equip(){let r=await read();for(const id of R.unequippedRelics(r).sort((a,b)=>relicScore(b)-relicScore(a))){const d=getRelic(id),list=d.type==='machine'?r.machineRelics:r.armyRelics,cap=d.type==='machine'?r.machineCapacity:r.armyRelicCapacity;if(d.type==='machine'&&r.nodeState.machineLocked)continue;const worst=[...list].sort((a,b)=>relicScore(a)-relicScore(b))[0];if(list.length>=cap&&relicScore(worst)>=relicScore(id))continue;await click('inventory');await click('relic-inventory');await click('equip-dialog',{id});if(list.length>=cap)await click('equip-relic',{id,replace:worst});await close();r=await read()}}
+async function expand(){const r=await read(),cost=R.expansionCost(r);if(cost!==null&&r.bones>=cost+4&&all(r).length>=r.capacity){if(!await page.locator('[data-action=expand]').count())await click('inventory');await click('expand');await close()}}
+async function select(uid:string){await close();await click('tab',{tab:'army'});await click('select-unit',{uid})}
+async function organize(){let r=await read();for(let k=0;k<12&&all(r).length>r.capacity;k++){let pair:[UnitInstance,UnitInstance]|undefined;for(const body of r.staging){const d=getUnit(body.templateId),old=r.army.filter(u=>getUnit(u.templateId).family===d.family&&getUnit(u.templateId).rank<d.rank&&u.xp>0).sort((a,b)=>b.xp-a.xp)[0];if(old){pair=[old,body];break}}if(!pair)break;await select(pair[0].uid);await click('unit-info',{uid:pair[0].uid});await click('fusion-dialog',{uid:pair[0].uid});await click('confirm-fusion',{old:pair[0].uid,body:pair[1].uid});r=await read()}
+ const keep:UnitInstance[]=[];let pool=all(r);const take=(f:(u:UnitInstance)=>boolean)=>{const u=pool.filter(f).sort((a,b)=>score(b)-score(a))[0];if(u){keep.push(u);pool=pool.filter(x=>x.uid!==u.uid)}};take(healer);take(frontline);take(frontline);while(keep.length<r.capacity&&pool.length)take(()=>true);
+ for(const donor of pool){r=await read();const target=all(r).filter(u=>keep.some(k=>k.uid===u.uid)&&u.xp<150).sort((a,b)=>levelForXp(a.xp)-levelForXp(b.xp)||score(b)-score(a))[0];if(target){await select(target.uid);await click('sacrifice-mode',{uid:target.uid});await click('select-unit',{uid:donor.uid});await click('confirm-sacrifice',{donor:donor.uid,target:target.uid})}else{await select(donor.uid);await click('unit-info',{uid:donor.uid});await click('dismiss-dialog',{uid:donor.uid});await click('dismiss',{uid:donor.uid})}}
+ r=await read();for(const u of r.staging){await select(u.uid);await click('auto-deploy',{uid:u.uid})}
+ r=await read();const formation=[...r.army].sort((a,b)=>Number(frontline(b))-Number(frontline(a))||getStats(a).range-getStats(b).range||getStats(b).hp-getStats(a).hp);if(formation.some((u,i)=>u.slot!==i)){
+  for(const u of r.army.filter(u=>u.slot!==null)){await select(u.uid);await click('bench',{uid:u.uid})}
+  for(const u of formation){await select(u.uid);await click('auto-deploy',{uid:u.uid})}
+ }
+ r=await read();for(const u of R.pendingSpecializations(r)){await select(u.uid);await click('spec-dialog',{uid:u.uid});await click('choose-spec',{uid:u.uid,choice:starter==='plague'?'B':'A'})}
+ await close();
+}
+const bScore=(b:FamilyId[])=>analyzeBoard(b).reduce((n,w)=>n+[0,1,2.8,5.5,9][w.rank]+(w.family===main?.2:0)+(w.level-1)*.7,0);
+function candidates(kind:string,source:string):SlotIntervention[]{if(kind==='rotateCorners')return[{kind}];if(kind==='swapColumns')return[{kind,a:0,b:1},{kind,a:0,b:2},{kind,a:1,b:2}];if(kind==='swap'||kind==='copy'){const o:SlotIntervention[]=[];for(let a=0;a<9;a++)for(let b=0;b<9;b++)if(a!==b&&(source==='R_M08'?b===4:isAdjacent(a,b)))o.push({kind,a,b});return o}return Array.from({length:kind==='rerollCell'?9:3},(_,index)=>({kind,index})as SlotIntervention)}
+async function edit(){for(let pass=0;pass<2;pass++){const r=await read();let best:{action:SlotIntervention;source:string;gain:number}|null=null;const initial=bScore(r.slot!.board);for(const opt of R.interventionOptions(r).filter(x=>x.available)){if(r.bones-opt.cost<1&&opt.cost>0)continue;for(const action of candidates(opt.kind,opt.sourceId)){const trials=['lockColumn','rerollCell','rerollRow'].includes(action.kind)?24:1,sampler=new Rng(70001);let value=0;for(let t=0;t<trials;t++)value+=bScore(interventionBoard(r.slot!.board,action,R.activeWeights(r),sampler));const gain=value/trials-initial-opt.cost*.28;if(gain>.07&&(!best||gain>best.gain))best={action,source:opt.sourceId,gain}}}if(!best)break;await click('select-tool',{source:best.source});const a=best.action;if(a.kind==='swap'||a.kind==='copy'||a.kind==='swapColumns'){await click('slot-cell',{index:a.a});if(!(best.source==='R_M08'))await click('slot-cell',{index:a.b})}else if(a.kind==='rotateCorners')await click('slot-cell',{index:0});else if('index'in a)await click('slot-cell',{index:a.kind==='rerollRow'?a.index*3:a.index})}}
+async function pull(){await click('spin');await page.evaluate(()=>window.advanceTime(750));await edit();await click('claim-dialog');if(await page.locator('[data-action=claim]').count()){const r=await read();for(const w of R.getSlotWins(r)){if(w.templateIds.length>1){const branch=w.family==='HD'&&starter!=='legion'?'B':'A';const id=w.templateIds.find(id=>id.endsWith(branch))||w.templateIds[0];await click('choose-branch',{family:w.family,id})}}await click('claim',{auto:'0'})}await expand();await organize()}
+function nodeValue(n:R.MapNode,r:R.RunState){if(n.kind==='normal')return 20;if(n.kind==='elite')return r.capacity>=6&&r.hp>45?21:5;if(n.kind==='grave')return r.hp<45?60:25;if(n.kind==='workshop')return r.bones>=10&&r.familyWeights.some(w=>w.weight!==targetWeights[w.family])?45:3;if(n.kind==='shop')return r.bones>=20?35:5;if(n.kind==='event')return 22;return 10}
+try{
+ await page.goto(url);await page.waitForFunction(()=>window.render_game_to_text);if(resume){await page.evaluate(text=>localStorage.setItem('whitebone.save.v1',text),readFileSync(resume,'utf8'));await page.reload();await page.waitForFunction(()=>window.render_game_to_text);await click('continue-run')}else{await click('select-starter',{id:starter});await page.fill('#seed-input',seed);await click('new-run')}
+ await shot('start');
+ for(let phase=0;phase<200;phase++){
+  let r=await read();if(r.phase==='victory'||r.phase==='defeat'){await shot(r.phase);break}
+  if(r.phase==='map'){await equip();r=await read();const next=R.availableNodes(r).sort((a,b)=>nodeValue(b,r)-nodeValue(a,r))[0];await click('inspect-node',{id:next.id});await click('enter-node',{id:next.id});await shot(`${next.act}-${next.layer}-${next.kind}`)}
+  else if(r.phase==='prep'){
+   await equip();await expand();r=await read();if(!r.slot||r.slot.settled){await pull()}else{await click('claim-dialog');if(await page.locator('[data-action=claim]').count())await click('claim',{auto:'0'});await organize()}
+   r=await read();if(r.bones>=(R.spinCost(r)||100)+6){await pull()}
+   await organize();r=await read();if(!R.canStartWave(r).ok)throw Error('Cannot start after prep: '+R.canStartWave(r).message);await shot(`ready-${r.runStats.wavesPlayed+1}`);await click('start-battle');await page.evaluate(()=>window.advanceTime(3500));await shot(`battle-${r.runStats.wavesPlayed+1}`);
+   if(r.runStats.wavesPlayed===0){await click('pause');const t=await page.evaluate(()=>window.__whitebone!.getBattle()!.time);await page.evaluate(()=>window.advanceTime(5000));if(await page.evaluate(()=>window.__whitebone!.getBattle()!.time)!==t)throw Error('Pause advanced time');await click('pause');await page.reload();await page.waitForFunction(()=>window.render_game_to_text);await click('continue-run');actions.push({verified:'battle reload resume'})}
+   for(let i=0;i<4&&(await read()).phase==='battle';i++)await page.evaluate(()=>window.advanceTime(30000));r=await read();waves.push({wave:r.runStats.wavesPlayed,result:r.battleResult,hp:r.hp,bones:r.bones,team:r.army});console.log(`UI ${starter}: ${r.runStats.wavesWon}/${r.runStats.wavesPlayed} ${r.phase}, hp=${r.hp} bones=${r.bones}`);await shot(`result-${r.runStats.wavesPlayed}`)
+  }else if(r.phase==='waveResult'){await click('continue-wave')}
+  else if(r.phase==='reward'){const c=[...r.rewardChoices].sort((a,b)=>(b.relicId?relicScore(b.relicId):3)-(a.relicId?relicScore(a.relicId):3))[0];await shot('reward');await click('take-reward',{id:c.id})}
+  else if(r.phase==='workshop'){if(r.bones>=10&&r.familyWeights.some(w=>w.weight!==targetWeights[w.family])){for(const w of r.familyWeights)await page.fill(`.weight-input[data-family=${w.family}]`,String(targetWeights[w.family]));await click('apply-weights')}await click('leave-service')}
+  else if(r.phase==='grave'){if(r.hp<51)await click('grave-heal');else{const u=r.army.filter(u=>u.xp<150).sort((a,b)=>a.xp-b.xp)[0];if(u){await page.selectOption('#grave-target',u.uid);await click('grave-train')}}await click('leave-service')}
+  else if(r.phase==='shop'){for(const o of [...r.shopStock].filter(o=>o.kind==='relic').sort((a,b)=>relicScore(b.contentId)-relicScore(a.contentId))){r=await read();if(r.bones>=o.price+12&&relicScore(o.contentId)>=8){await click('buy',{id:o.id});await equip()}}await click('leave-service')}
+  else if(r.phase==='event'){await click('event-choice',{choice:'c'});await click('leave-service')}
+ }
+ const result=await read();writeFileSync(`${out}/report.json`,JSON.stringify({seed,starter,phase:result.phase,stats:result.runStats,errors,actions,waves,browser:'Chromium headless 1440x900',mutationPolicy:'Only DOM click/select/fill and public deterministic time stepping. Test hook state reads only.'},null,2));if(errors.length)throw Error(errors.join('\n'));console.log(JSON.stringify({phase:result.phase,stats:result.runStats,errors,actions:actions.length}));
+}catch(e){await shot('FAILURE');writeFileSync(`${out}/failure.json`,JSON.stringify({error:String(e),errors,actions:actions.slice(-20),state:await read()},null,2));throw e}finally{await browser.close()}
